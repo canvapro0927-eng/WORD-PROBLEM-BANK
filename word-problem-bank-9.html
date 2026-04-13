@@ -1,0 +1,2899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Word Problem Bank · Mathematics in the Modern World</title>
+<meta name="author" content="Ricky Dela Torre">
+<meta name="creator" content="Ricky Dela Torre">
+<meta name="description" content="Word Problem Bank - Mathematics in the Modern World - Final Output by Ricky Dela Torre">
+<!-- iOS / Mobile Web App -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Word Problem Bank">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a2155">
+<!-- iOS: Open in Safari from Files app -->
+<script>
+(function(){
+  // If running on iOS from file:// — auto-redirect to blob URL so Safari opens it properly
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  var isFile = location.protocol === 'file:';
+  if(isIOS && isFile){
+    // Read our own source and open as blob
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', location.href, true);
+    xhr.responseType = 'text';
+    xhr.onload = function(){
+      var blob = new Blob([xhr.responseText], {type:'text/html'});
+      var url = URL.createObjectURL(blob);
+      location.replace(url);
+    };
+    xhr.onerror = function(){
+      // Fallback: show user instruction
+      document.getElementById('ios-open-hint') && (document.getElementById('ios-open-hint').style.display='flex');
+    };
+    xhr.send();
+    return;
+  }
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- EMBEDDED_REPO_BUNDLE: null -->
+<style>
+/* ═══════════════════════════════════════
+   ROOT — LIGHT MATH PALETTE
+═══════════════════════════════════════ */
+:root{
+  --bg:        #F7F8FC;
+  --bg2:       #EEF0F8;
+  --surface:   #FFFFFF;
+  --border:    rgba(60,80,180,0.10);
+  --shadow:    0 2px 16px rgba(60,80,180,0.08);
+  --shadow-md: 0 6px 32px rgba(60,80,180,0.13);
+  --shadow-lg: 0 16px 56px rgba(60,80,180,0.16);
+
+  --ink:       #1A1D2E;
+  --ink2:      #3D4166;
+  --muted:     #8A8FA8;
+
+  --blue:      #3B5BDB;
+  --blue-l:    #EDF2FF;
+  --blue-m:    rgba(59,91,219,0.12);
+
+  --teal:      #0EA47A;
+  --teal-l:    #E6FBF4;
+
+  --amber:     #E8890C;
+  --amber-l:   #FFF5E0;
+
+  --rose:      #E03E6A;
+  --rose-l:    #FEE8EF;
+
+  --violet:    #7C3AED;
+  --violet-l:  #F3EEFF;
+
+  --correct:   #0EA47A;
+  --wrong:     #E03E6A;
+
+  --r:         12px;
+  --r-sm:      8px;
+  --r-lg:      20px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px;}
+
+/* ── Selection ── */
+::selection{background:var(--blue-m);color:var(--blue);}
+
+/* ─────────────────────────────────────
+   MATH BACKGROUND PATTERN
+───────────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(59,91,219,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(14,164,122,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(124,58,237,0.03) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+.math-bg-svg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.045;overflow:hidden;
+}
+
+/* ─────────────────────────────────────
+   LOCK SCREEN
+───────────────────────────────────── */
+#lock-screen{
+  position:fixed;inset:0;z-index:99999;
+  background:linear-gradient(135deg,#1a2155 0%,#2d3a8c 40%,#1a5276 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.lock-math-float{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.lock-symbol{
+  position:absolute;
+  font-family:'Fraunces',serif;
+  color:rgba(255,255,255,0.06);
+  animation:floatSymbol linear infinite;
+  user-select:none;
+}
+@keyframes floatSymbol{
+  from{transform:translateY(110vh) rotate(0deg);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:0.5;}
+  to{transform:translateY(-10vh) rotate(360deg);opacity:0;}
+}
+.lock-card{
+  background:rgba(255,255,255,0.07);
+  backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:24px;
+  padding:3rem 3.5rem;
+  width:min(480px,90vw);
+  text-align:center;
+  box-shadow:0 24px 80px rgba(0,0,0,0.4);
+  position:relative;z-index:2;
+  animation:lockCardIn .7s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes lockCardIn{from{opacity:0;transform:scale(.9) translateY(30px);}to{opacity:1;transform:scale(1) translateY(0);}}
+
+.lock-icon{
+  width:72px;height:72px;
+  background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.05));
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;margin:0 auto 1.5rem;
+  animation:lockIconPulse 2.5s ease infinite;
+}
+@keyframes lockIconPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0.2);}50%{box-shadow:0 0 0 14px rgba(255,255,255,0);}}
+
+.lock-title{
+  font-family:'Fraunces',serif;
+  font-size:2rem;font-weight:900;
+  color:#fff;line-height:1.1;
+  margin-bottom:.4rem;
+}
+.lock-subtitle{
+  font-size:.85rem;color:rgba(255,255,255,0.55);
+  margin-bottom:2rem;line-height:1.6;
+}
+.lock-instruction{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;
+  padding:.85rem 1.2rem;
+  font-size:.78rem;color:rgba(255,255,255,0.65);
+  margin-bottom:1.5rem;line-height:1.7;
+  text-align:left;
+}
+.lock-instruction strong{color:rgba(255,255,255,0.9);}
+
+.lock-input-wrap{position:relative;margin-bottom:1rem;}
+.lock-input{
+  width:100%;
+  padding:1rem 3rem 1rem 1.2rem;
+  background:rgba(255,255,255,0.1);
+  border:1.5px solid rgba(255,255,255,0.2);
+  border-radius:12px;
+  color:#fff;
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.1rem;letter-spacing:.2em;text-align:center;
+  outline:none;
+  transition:border-color .2s,background .2s;
+}
+.lock-input::placeholder{color:rgba(255,255,255,0.3);letter-spacing:.1em;font-size:.85rem;}
+.lock-input:focus{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.15);}
+.lock-input.error{border-color:#ff6b6b;animation:shake .4s ease;}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}50%{transform:translateX(6px);}}
+
+.lock-eye{
+  position:absolute;right:1rem;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:rgba(255,255,255,0.4);
+  cursor:pointer;font-size:1rem;padding:.3rem;
+  transition:color .2s;
+}
+.lock-eye:hover{color:rgba(255,255,255,0.8);}
+
+.lock-btn{
+  width:100%;padding:1rem;
+  background:linear-gradient(135deg,#5b7cff,#3b5bdb);
+  border:none;border-radius:12px;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:700;letter-spacing:.04em;
+  cursor:pointer;
+  transition:transform .15s,box-shadow .2s,filter .2s;
+  box-shadow:0 6px 20px rgba(59,91,219,0.4);
+}
+.lock-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(59,91,219,0.5);}
+.lock-btn:active{transform:scale(.97);}
+
+.lock-error-msg{
+  font-size:.78rem;color:#ff9999;margin-top:.6rem;
+  opacity:0;transition:opacity .2s;
+  min-height:1.2em;
+}
+.lock-error-msg.show{opacity:1;}
+
+/* Lock exit */
+#lock-screen.exit{animation:lockExit .7s cubic-bezier(0.4,0,0.2,1) forwards;}
+@keyframes lockExit{to{opacity:0;transform:scale(1.05);}}
+
+/* ── Activated popup ── */
+#activated-popup{
+  position:fixed;inset:0;z-index:100000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(10,15,40,0.7);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+#activated-popup.show{opacity:1;pointer-events:all;}
+.act-card{
+  background:#fff;border-radius:24px;
+  padding:2.5rem 3rem;text-align:center;
+  box-shadow:0 24px 80px rgba(59,91,219,0.25);
+  transform:scale(.8);transition:transform .4s cubic-bezier(0.16,1,0.3,1);
+  max-width:360px;width:90%;
+}
+#activated-popup.show .act-card{transform:scale(1);}
+.act-emoji{font-size:3.5rem;display:block;margin-bottom:.8rem;animation:actBounce .6s .2s cubic-bezier(0.16,1,0.3,1) both;}
+@keyframes actBounce{from{transform:scale(0) rotate(-20deg);}to{transform:scale(1) rotate(0);}}
+.act-title{font-family:'Fraunces',serif;font-size:1.8rem;font-weight:900;color:var(--blue);margin-bottom:.4rem;}
+.act-sub{font-size:.9rem;color:var(--muted);line-height:1.6;margin-bottom:1.5rem;}
+.act-btn{
+  display:inline-block;padding:.75rem 2rem;
+  background:var(--blue);color:#fff;
+  border:none;border-radius:10px;
+  font-weight:700;font-size:.9rem;cursor:pointer;
+  transition:transform .15s,filter .2s;
+}
+.act-btn:hover{filter:brightness(1.1);transform:translateY(-1px);}
+
+/* ─────────────────────────────────────
+   STICKY HEADER / NAV
+───────────────────────────────────── */
+#site-header{
+  position:sticky;top:0;z-index:500;
+  background:rgba(247,248,252,0.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 5vw;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+  box-shadow:0 2px 12px rgba(60,80,180,0.06);
+  transition:box-shadow .2s;
+}
+.header-logo{
+  font-family:'Fraunces',serif;
+  font-size:1.2rem;font-weight:900;
+  color:var(--blue);text-decoration:none;
+  letter-spacing:-.01em;cursor:pointer;
+}
+.header-logo span{color:var(--ink2);font-style:italic;font-weight:400;}
+
+.header-nav{display:flex;align-items:center;gap:.4rem;}
+.hnav-btn{
+  padding:.45rem 1rem;
+  background:transparent;border:1.5px solid var(--border);
+  border-radius:8px;color:var(--ink2);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.78rem;font-weight:600;cursor:pointer;
+  text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;
+  transition:all .18s ease;white-space:nowrap;
+}
+.hnav-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-1px);box-shadow:0 4px 12px rgba(59,91,219,0.25);}
+.hnav-btn.primary{background:var(--blue);color:#fff;border-color:var(--blue);}
+.hnav-btn.primary:hover{filter:brightness(1.12);box-shadow:0 4px 16px rgba(59,91,219,0.35);}
+.hnav-btn .icon{font-size:.9rem;}
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+#hero{
+  min-height:92vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:5rem 6vw 3rem;
+  position:relative;overflow:hidden;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.4em 1.1em;
+  background:var(--blue-l);border:1.5px solid rgba(59,91,219,0.2);
+  border-radius:20px;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:1.8rem;
+  animation:fadeUp .6s .1s ease both;
+}
+.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.hero-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(3rem,8vw,6.5rem);
+  font-weight:900;line-height:.95;
+  letter-spacing:-.03em;color:var(--ink);
+  margin-bottom:1.2rem;
+  animation:fadeUp .7s .2s ease both;
+}
+.hero-title em{
+  font-style:italic;color:var(--blue);
+  display:block;
+}
+
+.hero-desc{
+  font-size:clamp(.9rem,1.8vw,1.05rem);
+  font-weight:400;line-height:1.8;
+  color:var(--ink2);max-width:520px;margin:0 auto 2.5rem;
+  animation:fadeUp .7s .35s ease both;
+}
+
+.hero-stats{
+  display:flex;justify-content:center;gap:2.5rem;
+  margin-bottom:2.5rem;
+  animation:fadeUp .7s .45s ease both;
+}
+.hstat{
+  display:flex;flex-direction:column;align-items:center;gap:.2rem;
+  padding:1.1rem 1.6rem;
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.hstat-num{
+  font-family:'Fraunces',serif;
+  font-size:2rem;font-weight:900;color:var(--blue);line-height:1;
+}
+.hstat-label{font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
+
+.hero-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp .7s .55s ease both;
+}
+.h-btn{
+  padding:.85rem 2rem;border-radius:12px;
+  font-weight:700;font-size:.9rem;cursor:pointer;
+  transition:all .2s;text-decoration:none;
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.h-btn-primary{
+  background:var(--blue);color:#fff;border:none;
+  box-shadow:0 6px 20px rgba(59,91,219,0.35);
+}
+.h-btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(59,91,219,0.45);filter:brightness(1.08);}
+.h-btn-outline{
+  background:var(--surface);color:var(--blue);
+  border:2px solid var(--blue);
+}
+.h-btn-outline:hover{background:var(--blue-l);transform:translateY(-2px);}
+
+.hero-char{
+  position:absolute;right:4vw;bottom:0;
+  font-size:clamp(120px,18vw,240px);line-height:1;
+  opacity:.07;font-family:'Fraunces',serif;font-weight:900;
+  color:var(--blue);pointer-events:none;
+  animation:heroFloat 6s ease-in-out infinite alternate;
+}
+@keyframes heroFloat{from{transform:translateY(0);}to{transform:translateY(-18px);}}
+
+/* ─────────────────────────────────────
+   SECTION COMMON
+───────────────────────────────────── */
+.section{padding:4rem 6vw;}
+.section-header{text-align:center;margin-bottom:3rem;}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:.8rem;
+}
+.section-eyebrow::before,.section-eyebrow::after{content:'';width:24px;height:1.5px;background:var(--blue);opacity:.4;display:inline-block;}
+.section-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:900;color:var(--ink);
+  letter-spacing:-.02em;line-height:1.1;
+}
+.section-sub{font-size:.9rem;color:var(--muted);margin-top:.6rem;line-height:1.7;}
+
+/* ─────────────────────────────────────
+   PROJECT INFO SECTION
+───────────────────────────────────── */
+#project-info{background:var(--surface);}
+.info-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.2rem;
+  max-width:900px;margin:0 auto;
+}
+.info-chip{
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  padding:1.4rem 1.6rem;
+  transition:box-shadow .2s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.info-chip::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:var(--r) var(--r) 0 0;
+}
+.info-chip:nth-child(1)::before{background:var(--blue);}
+.info-chip:nth-child(2)::before{background:var(--teal);}
+.info-chip:nth-child(3)::before{background:var(--amber);}
+.info-chip:nth-child(4)::before{background:var(--rose);}
+.info-chip:nth-child(5)::before{background:var(--violet);}
+.info-chip:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);}
+.info-chip-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;
+}
+.info-chip-val{
+  font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;
+  color:var(--ink);line-height:1.3;
+}
+.info-chip.featured{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.info-chip.featured .info-chip-val{font-size:1.5rem;}
+.info-author-badge{
+  padding:.5em 1.2em;background:var(--blue-l);
+  border:1.5px solid rgba(59,91,219,.2);
+  border-radius:20px;
+  font-size:.75rem;font-weight:700;color:var(--blue);
+  white-space:nowrap;flex-shrink:0;
+}
+
+/* ─────────────────────────────────────
+   POLYA SECTION
+───────────────────────────────────── */
+#polya{background:var(--bg2);}
+.polya-steps-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1.2rem;max-width:960px;margin:0 auto;
+}
+.polya-step{
+  background:var(--surface);border-radius:var(--r);
+  padding:2rem 1.6rem;
+  border:1.5px solid var(--border);
+  box-shadow:var(--shadow);
+  transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.polya-step::after{
+  content:'';position:absolute;inset:0;
+  border-radius:var(--r);
+  opacity:0;transition:opacity .3s;
+}
+.polya-step:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.ps1{border-top:3px solid var(--rose);}
+.ps2{border-top:3px solid var(--blue);}
+.ps3{border-top:3px solid var(--teal);}
+.ps4{border-top:3px solid var(--amber);}
+.polya-step-icon{font-size:2.2rem;margin-bottom:1rem;display:block;}
+.polya-step-num{
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.4rem;
+}
+.polya-step-name{
+  font-family:'Fraunces',serif;
+  font-size:1.2rem;font-weight:700;
+  color:var(--ink);margin-bottom:.6rem;
+}
+.ps1 .polya-step-name{color:var(--rose);}
+.ps2 .polya-step-name{color:var(--blue);}
+.ps3 .polya-step-name{color:var(--teal);}
+.ps4 .polya-step-name{color:var(--amber);}
+.polya-step-desc{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+/* ─────────────────────────────────────
+   QUIZ SECTION
+───────────────────────────────────── */
+#quiz{background:var(--surface);}
+.quiz-controls{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1rem;
+  margin-bottom:2rem;
+}
+.quiz-score-bar{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--r);
+  padding:.7rem 1.2rem;
+}
+.score-item{display:flex;flex-direction:column;align-items:center;gap:.1rem;min-width:52px;}
+.score-num{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;line-height:1;}
+.score-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+.score-div{width:1px;height:32px;background:var(--border);}
+.score-correct .score-num{color:var(--correct);}
+.score-wrong .score-num{color:var(--wrong);}
+.score-total .score-num{color:var(--blue);}
+
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;}
+.flt-btn{
+  padding:.42rem 1rem;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:8px;font-size:.72rem;font-weight:600;
+  color:var(--ink2);cursor:pointer;
+  transition:all .15s;
+}
+.flt-btn:hover{border-color:var(--blue);color:var(--blue);}
+.flt-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+/* QUIZ GRID */
+.quiz-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+  gap:1.4rem;
+}
+
+/* QUIZ CARD */
+.qcard{
+  background:var(--surface);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:box-shadow .2s,transform .2s;
+  position:relative;
+  display:flex;flex-direction:column;
+}
+.qcard:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);}
+.qcard.answered-correct{border-color:rgba(14,164,122,.4);}
+.qcard.answered-wrong{border-color:rgba(224,62,106,.3);}
+
+/* Card BG graphic */
+.qcard-bg{
+  position:absolute;right:-10px;bottom:-10px;
+  font-size:5.5rem;line-height:1;
+  opacity:.055;pointer-events:none;
+  user-select:none;
+  transition:opacity .3s;
+}
+.qcard:hover .qcard-bg{opacity:.09;}
+
+.qcard-header{
+  padding:1.1rem 1.3rem .7rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.qcard-meta{display:flex;align-items:center;gap:.5rem;}
+.qcard-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;font-weight:600;color:var(--muted);
+}
+.qcard-cat{
+  font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:.22em .7em;border-radius:20px;
+}
+.cat-algebra{background:var(--blue-l);color:var(--blue);}
+.cat-geometry{background:var(--teal-l);color:var(--teal);}
+.cat-probability{background:var(--violet-l);color:var(--violet);}
+.cat-sequences{background:rgba(14,164,122,.1);color:var(--teal);}
+.cat-rates{background:var(--amber-l);color:var(--amber);}
+.cat-logic{background:var(--rose-l);color:var(--rose);}
+
+.qcard-diff{
+  display:flex;align-items:center;gap:.2rem;
+}
+.diff-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--border);transition:background .2s;
+}
+.diff-dot.active{background:var(--amber);}
+
+.qcard-body{padding:1rem 1.3rem;flex:1;}
+.qcard-timer{
+  display:flex;align-items:center;gap:.5rem;
+  margin-bottom:.8rem;
+}
+.timer-bar-wrap{flex:1;height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;}
+.timer-bar{height:100%;border-radius:2px;transition:width .2s linear,background .5s;}
+.timer-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;font-weight:600;color:var(--ink2);
+  min-width:28px;text-align:right;
+}
+
+.qcard-q{
+  font-size:.9rem;font-weight:500;line-height:1.65;
+  color:var(--ink);margin-bottom:1.1rem;
+}
+
+.choices{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1rem;}
+.choice-btn{
+  width:100%;padding:.7rem 1rem;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-sm);
+  font-size:.83rem;font-weight:500;
+  color:var(--ink);
+  cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:.75rem;
+  transition:all .18s ease;
+  position:relative;overflow:hidden;
+}
+.choice-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--blue-m);opacity:0;transition:opacity .15s;
+}
+.choice-btn:hover:not(:disabled){border-color:var(--blue);color:var(--blue);transform:translateX(3px);}
+.choice-btn:hover:not(:disabled)::before{opacity:1;}
+.choice-btn:active:not(:disabled){transform:scale(.98);}
+.choice-btn.correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal);}
+.choice-btn.wrong{background:var(--rose-l);border-color:var(--rose);color:var(--rose);}
+.choice-btn.reveal-correct{background:var(--teal-l);border-color:var(--teal);color:var(--teal);}
+.choice-btn:disabled{cursor:not-allowed;opacity:.7;}
+.choice-letter{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--border);color:var(--muted);
+  font-size:.65rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .2s,color .2s;
+}
+.choice-btn.correct .choice-letter{background:var(--teal);color:#fff;}
+.choice-btn.wrong .choice-letter{background:var(--rose);color:#fff;}
+.choice-btn.reveal-correct .choice-letter{background:var(--teal);color:#fff;}
+
+.qcard-footer{
+  padding:.8rem 1.3rem 1rem;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:.5rem;
+}
+.view-sol-btn{
+  flex:1;padding:.65rem;
+  background:var(--blue-l);
+  border:1.5px solid rgba(59,91,219,.2);
+  border-radius:var(--r-sm);
+  color:var(--blue);font-size:.78rem;font-weight:700;
+  cursor:pointer;
+  transition:all .18s;
+  display:none;align-items:center;justify-content:center;gap:.4rem;
+}
+.view-sol-btn.show{display:flex;}
+.view-sol-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+.retry-btn{
+  padding:.65rem .9rem;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--r-sm);
+  color:var(--muted);font-size:.78rem;font-weight:600;
+  cursor:pointer;transition:all .18s;
+  display:none;
+}
+.retry-btn.show{display:block;}
+.retry-btn:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ─────────────────────────────────────
+   FEEDBACK TOAST
+───────────────────────────────────── */
+#toast{
+  position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-20px);
+  z-index:8000;
+  background:var(--surface);
+  border-radius:var(--r);
+  padding:.9rem 1.8rem;
+  box-shadow:var(--shadow-lg);
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.9rem;font-weight:600;
+  border:2px solid var(--border);
+  opacity:0;pointer-events:none;
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);
+  max-width:90vw;text-align:center;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast.toast-correct{border-color:var(--teal);}
+#toast.toast-wrong{border-color:var(--rose);}
+.toast-icon{font-size:1.3rem;}
+
+/* ─────────────────────────────────────
+   SOLUTION MODAL
+───────────────────────────────────── */
+#sol-overlay{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(26,29,46,0.6);
+  backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+#sol-overlay.open{opacity:1;pointer-events:all;}
+#sol-modal{
+  background:var(--surface);
+  border-radius:20px;
+  width:100%;max-width:720px;
+  max-height:88vh;overflow-y:auto;
+  box-shadow:0 24px 80px rgba(26,29,46,0.3);
+  transform:translateY(24px) scale(.97);
+  transition:transform .35s cubic-bezier(0.16,1,0.3,1);
+  border:1.5px solid var(--border);
+}
+#sol-overlay.open #sol-modal{transform:translateY(0) scale(1);}
+
+.sol-header{
+  padding:1.8rem 2rem 1.2rem;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+  background:var(--surface);z-index:10;
+  border-radius:20px 20px 0 0;
+}
+.sol-header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.8rem;}
+.sol-problem-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.65rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+}
+.sol-close{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg);border:1.5px solid var(--border);
+  color:var(--muted);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .18s;flex-shrink:0;
+}
+.sol-close:hover{background:var(--rose-l);color:var(--rose);border-color:var(--rose);}
+.sol-title{
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.3rem,2.5vw,1.8rem);
+  font-weight:900;color:var(--ink);line-height:1.2;
+  margin-bottom:.5rem;
+}
+.sol-problem-text{
+  font-size:.88rem;line-height:1.75;color:var(--ink2);
+  background:var(--bg);padding:1rem 1.2rem;
+  border-radius:var(--r-sm);border-left:3px solid var(--blue);
+}
+
+.sol-body{padding:1.5rem 2rem 2rem;}
+
+/* Polya accordion steps */
+.step-accordion{margin-bottom:.8rem;border-radius:var(--r);overflow:hidden;border:1.5px solid var(--border);}
+.step-acc-head{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 1.3rem;cursor:pointer;
+  background:var(--bg);
+  transition:background .18s;
+  user-select:none;
+}
+.step-acc-head:hover{background:var(--bg2);}
+.step-acc-badge{
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.28em .85em;border-radius:20px;flex-shrink:0;
+}
+.step-acc-badge.s1{background:var(--rose-l);color:var(--rose);}
+.step-acc-badge.s2{background:var(--blue-l);color:var(--blue);}
+.step-acc-badge.s3{background:var(--teal-l);color:var(--teal);}
+.step-acc-badge.s4{background:var(--amber-l);color:var(--amber);}
+.step-acc-title{font-size:.9rem;font-weight:700;color:var(--ink);flex:1;}
+.step-acc-arrow{color:var(--muted);font-size:.75rem;transition:transform .25s;flex-shrink:0;}
+.step-accordion.open .step-acc-arrow{transform:rotate(180deg);}
+.step-acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .45s cubic-bezier(0.16,1,0.3,1);
+  background:var(--surface);
+}
+.step-accordion.open .step-acc-body{max-height:1200px;}
+.step-acc-content{
+  padding:1.2rem 1.5rem 1.5rem;
+  font-size:.88rem;line-height:1.85;
+  color:var(--ink2);
+  border-top:1px solid var(--border);
+  animation:fadeUp .3s ease both;
+}
+/* Step content enhancements */
+.step-table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.82rem;}
+.step-table th{background:var(--blue-l);color:var(--blue);padding:.6rem .9rem;text-align:left;font-weight:700;}
+.step-table td{padding:.55rem .9rem;border-bottom:1px solid var(--border);}
+.step-table tr:last-child td{border-bottom:none;}
+.step-table tr:nth-child(even) td{background:var(--bg);}
+.math-block{
+  background:var(--bg);border-radius:var(--r-sm);
+  padding:.8rem 1.2rem;margin:.6rem 0;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.85rem;color:var(--blue);
+  border-left:3px solid var(--blue);
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+/* Vertical equation display — separates equations from prose */
+.eq-line{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.84rem;color:var(--blue);
+  background:var(--bg);
+  border-left:2px solid rgba(59,91,219,.3);
+  padding:.28rem .8rem;
+  margin:.25rem 0;
+  border-radius:0 4px 4px 0;
+  line-height:1.7;
+}
+.eq-label{
+  display:block;
+  font-size:.7rem;font-weight:700;
+  color:var(--muted);letter-spacing:.08em;
+  text-transform:uppercase;margin-top:.7rem;margin-bottom:.15rem;
+}
+.step-acc-content p{margin-bottom:.5rem;line-height:1.75;}
+.step-acc-content ul,.step-acc-content ol{margin:.3rem 0 .5rem 1.3rem;line-height:2;}
+.highlight-box{
+  background:var(--teal-l);border-radius:var(--r-sm);
+  padding:.75rem 1.1rem;margin:.6rem 0;
+  border-left:3px solid var(--teal);
+  font-size:.83rem;color:var(--ink2);
+}
+
+.sol-answer-box{
+  margin-top:1.5rem;
+  background:linear-gradient(135deg,var(--blue-l),rgba(59,91,219,.05));
+  border:2px solid rgba(59,91,219,.25);
+  border-radius:var(--r);
+  padding:1.2rem 1.5rem;
+  display:flex;align-items:center;gap:1.2rem;
+}
+.sol-answer-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--blue);flex-shrink:0;
+}
+.sol-answer-val{
+  font-family:'Fraunces',serif;
+  font-size:1.5rem;font-weight:900;color:var(--blue);
+}
+.sol-nav{
+  display:flex;gap:.8rem;margin-top:1.5rem;
+}
+.sol-nav-btn{
+  flex:1;padding:.75rem;background:var(--bg);
+  border:1.5px solid var(--border);border-radius:var(--r-sm);
+  font-size:.78rem;font-weight:700;color:var(--ink2);
+  cursor:pointer;transition:all .18s;
+}
+.sol-nav-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-l);}
+.sol-nav-btn:disabled{opacity:.3;cursor:not-allowed;}
+
+/* ─────────────────────────────────────
+   FOOTER
+───────────────────────────────────── */
+#site-footer{
+  background:var(--ink);color:rgba(255,255,255,0.7);
+  padding:3rem 6vw 2rem;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:2rem;margin-bottom:2rem;
+}
+.footer-col{}
+.footer-col-title{
+  font-family:'Fraunces',serif;
+  font-size:1rem;font-weight:700;color:#fff;
+  margin-bottom:1rem;
+}
+.footer-detail{
+  display:flex;flex-direction:column;gap:.4rem;
+}
+.fd-row{font-size:.78rem;line-height:1.6;color:rgba(255,255,255,0.55);}
+.fd-row strong{color:rgba(255,255,255,0.85);font-weight:600;}
+.footer-polya-list{display:flex;flex-direction:column;gap:.35rem;}
+.fp-item{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.78rem;color:rgba(255,255,255,0.55);
+}
+.fp-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.footer-nav-list{display:flex;flex-direction:column;gap:.3rem;}
+.fn-link{
+  font-size:.8rem;color:rgba(255,255,255,0.55);
+  text-decoration:none;cursor:pointer;
+  transition:color .18s;padding:.15rem 0;
+  display:inline-flex;align-items:center;gap:.4rem;
+}
+.fn-link:hover{color:#fff;}
+.footer-divider{border:none;border-top:1px solid rgba(255,255,255,0.08);margin-bottom:1.5rem;}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-bottom-brand{
+  font-family:'Fraunces',serif;font-size:1rem;font-weight:900;
+  color:rgba(255,255,255,.5);font-style:italic;
+}
+.footer-bottom-info{font-size:.72rem;color:rgba(255,255,255,.35);}
+
+/* ─────────────────────────────────────
+   REVEAL ANIMATIONS
+───────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes popIn{from{transform:scale(.8);opacity:0;}to{transform:scale(1);opacity:1;}}
+@keyframes correctPop{
+  0%{transform:scale(1);}
+  30%{transform:scale(1.04);}
+  60%{transform:scale(.98);}
+  100%{transform:scale(1);}
+}
+@keyframes confettiPop{
+  0%{transform:translateY(0) scale(1);opacity:1;}
+  100%{transform:translateY(-40px) scale(.5);opacity:0;}
+}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.click-ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(59,91,219,0.15);
+  transform:scale(0);
+  animation:rippleAnim .5s ease-out;
+  pointer-events:none;
+}
+@keyframes rippleAnim{to{transform:scale(4);opacity:0;}}
+
+/* ─────────────────────────────────────
+   SCROLL BLOCKER OVERLAY (post-unlock)
+───────────────────────────────────── */
+#scroll-blocker{
+  position:fixed;inset:0;z-index:9000;
+  pointer-events:all;
+  display:none;
+}
+#scroll-hint{
+  position:fixed;bottom:0;left:0;right:0;z-index:9001;
+  display:none;
+  flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-bottom: max(3rem, env(safe-area-inset-bottom, 3rem));
+  background:linear-gradient(to top, rgba(247,248,252,0.97) 0%, transparent 100%);
+  pointer-events:none;
+  animation:fadeIn .5s ease both;
+}
+.scroll-hint-inner{
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  animation:bounceUp 1.5s ease infinite;
+}
+.scroll-hint-text{
+  font-size:.78rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--blue);
+}
+.scroll-hint-arrow{
+  font-size:1.8rem;color:var(--blue);
+  animation:arrowBounce 1s ease infinite;
+}
+@keyframes arrowBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes bounceUp{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+/* ═══════════════════════════════════
+   GREETING SCREEN (shown after unlock, while voice speaks)
+═══════════════════════════════════ */
+#greeting-screen{
+  position:fixed;inset:0;z-index:9100;
+  background:linear-gradient(160deg,#0f1535 0%,#1a2a6c 50%,#0d3b2e 100%);
+  display:none;
+  flex-direction:column;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+/* Star field */
+#greeting-screen .g-stars{
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.g-star{
+  position:absolute;border-radius:50%;background:#fff;
+  animation:starTwinkle ease-in-out infinite;
+}
+@keyframes starTwinkle{0%,100%{opacity:.15;}50%{opacity:.9;}}
+
+/* Floating math symbols behind card */
+.g-sym{
+  position:absolute;
+  font-family:'Fraunces',serif;font-weight:900;
+  color:rgba(255,255,255,0.06);
+  animation:gSymFloat linear infinite;
+  pointer-events:none;user-select:none;
+}
+@keyframes gSymFloat{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  10%{opacity:1;}90%{opacity:.4;}
+  100%{transform:translateY(-60px) rotate(20deg);opacity:0;}
+}
+
+/* Central card */
+#greeting-card{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:2.5rem 3rem;
+  max-width:min(440px,90vw);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:28px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  animation:cardAppear .6s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes cardAppear{
+  from{opacity:0;transform:scale(.88) translateY(24px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+
+/* Avatar / icon */
+.g-avatar{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,#4a6cf7,#1a9870);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.2rem;margin:0 auto 1.2rem;
+  box-shadow:0 0 0 8px rgba(74,108,247,0.15), 0 0 30px rgba(74,108,247,0.3);
+  animation:avatarPulse 2s ease infinite;
+}
+@keyframes avatarPulse{
+  0%,100%{box-shadow:0 0 0 8px rgba(74,108,247,0.15),0 0 30px rgba(74,108,247,0.3);}
+  50%{box-shadow:0 0 0 16px rgba(74,108,247,0.08),0 0 50px rgba(74,108,247,0.4);}
+}
+
+/* Greeting text */
+.g-hello{
+  font-family:'Fraunces',serif;font-size:clamp(1.4rem,4vw,2rem);
+  font-weight:900;color:#fff;line-height:1.2;
+  margin-bottom:.4rem;
+  animation:fadeUp .5s .2s ease both;
+}
+.g-name{
+  font-family:'Fraunces',serif;font-size:clamp(1.8rem,5vw,2.6rem);
+  font-weight:900;
+  background:linear-gradient(90deg,#7eb8ff,#a0f0d0,#f7c97e);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;line-height:1.1;margin-bottom:.8rem;
+  animation:fadeUp .5s .3s ease both;
+}
+.g-subtitle{
+  font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6;
+  margin-bottom:1.4rem;
+  animation:fadeUp .5s .4s ease both;
+}
+
+/* Waveform voice indicator */
+.g-voice{
+  display:flex;align-items:flex-end;justify-content:center;
+  gap:3px;height:28px;margin-bottom:1.2rem;
+  animation:fadeUp .5s .5s ease both;
+}
+.g-bar{
+  width:3px;border-radius:2px;
+  background:linear-gradient(to top,#4a6cf7,#1a9870);
+  animation:voiceWave ease-in-out infinite;
+}
+@keyframes voiceWave{
+  0%,100%{height:4px;opacity:.5;}
+  50%{height:var(--h);opacity:1;}
+}
+
+/* Scroll cue */
+.g-scroll-cue{
+  display:none;
+  flex-direction:column;align-items:center;gap:.5rem;
+  animation:fadeUp .4s ease both;
+}
+.g-scroll-cue.show{display:flex;}
+.g-scroll-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+.g-scroll-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.7rem 1.6rem;
+  background:linear-gradient(135deg,#4a6cf7,#1a5ed4);
+  border:none;border-radius:50px;
+  color:#fff;font-size:.85rem;font-weight:700;
+  cursor:pointer;
+  box-shadow:0 4px 20px rgba(74,108,247,.4);
+  transition:transform .18s,box-shadow .18s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  animation:btnPulseGlow 2s ease infinite;
+}
+.g-scroll-btn:hover,.g-scroll-btn:active{transform:scale(1.04);box-shadow:0 6px 28px rgba(74,108,247,.55);}
+@keyframes btnPulseGlow{
+  0%,100%{box-shadow:0 4px 20px rgba(74,108,247,.4);}
+  50%{box-shadow:0 4px 32px rgba(74,108,247,.65),0 0 0 6px rgba(74,108,247,.1);}
+}
+.g-arrow-ani{animation:arrowBob .8s ease infinite;}
+@keyframes arrowBob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+/* ═══════════════════════════════════
+   3D PORTAL — triggered on scroll/tap
+═══════════════════════════════════ */
+#portal-scene{
+  position:fixed;inset:0;z-index:9200;
+  display:none;
+  align-items:center;justify-content:center;
+  background:#000;
+  perspective:800px;
+  overflow:hidden;
+}
+.portal-tunnel{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+  animation:tunnelFly 1.8s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes tunnelFly{
+  0%  {transform:translateZ(0);}
+  100%{transform:translateZ(1600px);}
+}
+.portal-ring{
+  position:absolute;top:50%;left:50%;
+  border-radius:50%;
+  transform:translate(-50%,-50%) translateZ(var(--z));
+  animation:ringAppear .05s linear both;
+}
+@keyframes ringAppear{to{opacity:1;}}
+
+/* Content flies in after portal */
+#main-content.world-reveal{
+  animation:contentFlyIn .9s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes contentFlyIn{
+  0%  {opacity:0;transform:scale(.7) translateZ(-400px);filter:blur(20px);}
+  50% {opacity:.7;filter:blur(4px);}
+  100%{opacity:1;transform:scale(1) translateZ(0);filter:blur(0);}
+}
+
+/* Shimmer */
+#world-shimmer{
+  position:fixed;inset:0;z-index:9210;
+  background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.65) 50%,transparent 80%);
+  background-size:300% 100%;pointer-events:none;opacity:0;
+}
+#world-shimmer.active{animation:shimmerSweep .8s ease forwards;}
+@keyframes shimmerSweep{
+  from{opacity:1;background-position:200% 0;}
+  to{opacity:0;background-position:-100% 0;}
+}
+
+/* ─────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────── */
+@media(max-width:860px){
+  .polya-steps-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .hero-stats{gap:1rem;}
+}
+@media(max-width:640px){
+  .polya-steps-grid{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .info-chip.featured{flex-direction:column;align-items:flex-start;}
+  .sol-body{padding:1rem 1.2rem 1.5rem;}
+  .sol-header{padding:1.2rem 1.2rem .8rem;}
+  .header-nav .hnav-btn span.label{display:none;}
+  .hero-stats{flex-wrap:wrap;justify-content:center;}
+}
+
+/* ─────────────────────────────────────
+   CROSS-DEVICE / MOBILE POLISH
+───────────────────────────────────── */
+
+/* Prevent iOS double-tap zoom on buttons */
+button, a, input, label, .choice-btn, .hnav-btn {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Minimum tap target size (Apple / Google guidelines) */
+.choice-btn, .hnav-btn, .h-btn, .flt-btn, .lock-btn,
+.sol-nav-btn, .step-acc-head, .view-sol-btn {
+  min-height: 44px;
+}
+
+/* iOS safe area padding */
+#site-header {
+  padding-left: max(5vw, env(safe-area-inset-left));
+  padding-right: max(5vw, env(safe-area-inset-right));
+}
+#site-footer {
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+}
+
+/* Smooth modal scroll on iOS */
+#sol-modal, #pdf-modal, #repo-modal {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Better text rendering on Android */
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Active state for touch devices (replaces hover) */
+@media (hover: none) {
+  .choice-btn:active:not(:disabled) {
+    background: var(--blue-l);
+    border-color: var(--blue);
+    transform: scale(0.97);
+  }
+  .hnav-btn:active { background: var(--blue); color: #fff; }
+  .h-btn-primary:active { filter: brightness(0.92); transform: scale(0.97); }
+  .polya-step:active { transform: translateY(-2px); }
+  .info-chip:active { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .qcard:active { transform: none; }
+}
+
+/* Lock card mobile */
+@media(max-width:480px){
+  .lock-card { padding: 2rem 1.5rem; border-radius: 20px; }
+  .lock-title { font-size: 1.6rem; }
+}
+
+/* Hero responsive mobile */
+@media(max-width:480px){
+  .hero-btns { flex-direction: column; width: 100%; }
+  .h-btn { justify-content: center; width: 100%; }
+  #hero { padding: 4rem 5vw 2rem; }
+}
+
+/* Step accordion touch friendly */
+.step-acc-head { min-height: 52px; }
+
+/* Prevent text size adjust on rotate */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+</style>
+</head>
+<body>
+
+<!-- ════ MATH SVG BACKGROUND ════ -->
+<svg class="math-bg-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <text x="30"  y="120" font-size="90" font-family="serif" fill="#3B5BDB">∑</text>
+  <text x="200" y="300" font-size="60" font-family="serif" fill="#0EA47A">π</text>
+  <text x="500" y="80"  font-size="70" font-family="serif" fill="#7C3AED">∫</text>
+  <text x="750" y="200" font-size="55" font-family="serif" fill="#E8890C">√</text>
+  <text x="950" y="120" font-size="80" font-family="serif" fill="#3B5BDB">∞</text>
+  <text x="100" y="500" font-size="50" font-family="serif" fill="#E03E6A">Δ</text>
+  <text x="350" y="600" font-size="65" font-family="serif" fill="#3B5BDB">θ</text>
+  <text x="650" y="450" font-size="75" font-family="serif" fill="#0EA47A">÷</text>
+  <text x="850" y="550" font-size="60" font-family="serif" fill="#7C3AED">±</text>
+  <text x="1050"y="400" font-size="50" font-family="serif" fill="#E8890C">≈</text>
+  <text x="50"  y="700" font-size="55" font-family="serif" fill="#3B5BDB">μ</text>
+  <text x="1100"y="700" font-size="65" font-family="serif" fill="#0EA47A">σ</text>
+  <text x="450" y="750" font-size="80" font-family="serif" fill="#7C3AED">∂</text>
+  <text x="800" y="750" font-size="55" font-family="serif" fill="#E03E6A">λ</text>
+  <circle cx="600" cy="400" r="280" stroke="#3B5BDB" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <circle cx="200" cy="200" r="120" stroke="#0EA47A" stroke-width="0.6" fill="none" opacity="0.25"/>
+  <circle cx="1000" cy="600" r="160" stroke="#7C3AED" stroke-width="0.7" fill="none" opacity="0.25"/>
+  <line x1="0" y1="400" x2="1200" y2="400" stroke="#3B5BDB" stroke-width="0.5" opacity="0.2"/>
+  <line x1="600" y1="0" x2="600" y2="800" stroke="#3B5BDB" stroke-width="0.5" opacity="0.2"/>
+</svg>
+
+<!-- ════ iOS OPEN HINT (fallback) ════ -->
+<div id="ios-open-hint" style="display:none;position:fixed;inset:0;z-index:999999;background:linear-gradient(135deg,#1a2155,#2d3a8c);flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;">
+  <div style="font-size:3rem;margin-bottom:1rem;">📱</div>
+  <div style="font-family:serif;font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:.8rem;">Open in Safari</div>
+  <div style="font-size:.9rem;color:rgba(255,255,255,.7);line-height:1.7;max-width:320px;margin-bottom:1.5rem;">
+    Tap the <strong style="color:#fff;">Share button ⬆</strong> at the bottom of your screen, then choose <strong style="color:#fff;">"Open in Safari"</strong> or <strong style="color:#fff;">"Copy to Safari"</strong> to view this file.
+  </div>
+  <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1rem 1.5rem;font-size:.8rem;color:rgba(255,255,255,.6);">
+    Alternatively: Open Safari → tap the address bar → type <code style="color:#fff;">file://</code> and navigate to this file.
+  </div>
+</div>
+
+<!-- ════ LOCK SCREEN ════ -->
+<div id="lock-screen">
+  <div class="lock-math-float" id="lock-floats"></div>
+  <div class="lock-card">
+    <div class="lock-icon">🔐</div>
+    <div class="lock-title">Word Problem Bank</div>
+    <div class="lock-subtitle">Mathematics in the Modern World<br>Protected Access · Prof. Gocon</div>
+    <div class="lock-instruction">
+      <strong>📋 Instructions:</strong><br>
+      This interactive portfolio contains 30 word problems solved using <strong>Polya's Four-Step Method</strong>. Enter the <strong>access code</strong> provided by the student to unlock the portfolio. Each problem features a timed quiz challenge and animated step-by-step solutions.
+    </div>
+    <div class="lock-input-wrap">
+      <input class="lock-input" id="lock-input" type="password" placeholder="Enter access code" maxlength="16" autocomplete="off" onkeydown="if(event.key==='Enter')tryCode()">
+      <button class="lock-eye" onclick="togglePwd()" id="lock-eye-btn" title="Show/hide">👁</button>
+    </div>
+    <div class="lock-error-msg" id="lock-err">Incorrect code. Please try again.</div>
+    <button class="lock-btn" onclick="tryCode()">🔓 &nbsp;Unlock Portfolio</button>
+  </div>
+</div>
+
+<!-- ════ ACTIVATED POPUP ════ -->
+<div id="activated-popup">
+  <div class="act-card">
+    <span class="act-emoji">✅</span>
+    <div class="act-title">Code Activated!</div>
+    <div class="act-sub">Welcome, Professor Gocon! 🎓<br>The Word Problem Bank is now unlocked.<br>Tap the button below to begin.</div>
+    <button class="act-btn" id="act-begin-btn" onclick="dismissActivated()">🎓 Let's Begin →</button>
+  </div>
+</div>
+
+<!-- ════ TOAST ════ -->
+<div id="toast">
+  <span class="toast-icon" id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- ════ SCROLL BLOCKER ════ -->
+<div id="scroll-blocker"></div>
+<div id="world-shimmer"></div>
+
+<!-- ════ GREETING SCREEN ════ -->
+<div id="greeting-screen">
+  <div class="g-stars" id="g-stars"></div>
+  <div id="greeting-card">
+    <div class="g-avatar">🎓</div>
+    <div class="g-hello">Welcome,</div>
+    <div class="g-name">Prof. Gocon!</div>
+    <div class="g-subtitle">Word Problem Bank is now unlocked.<br>Mathematics in the Modern World</div>
+    <div class="g-voice" id="g-voice">
+      <!-- bars injected by JS -->
+    </div>
+    <div class="g-scroll-cue" id="g-scroll-cue">
+      <div class="g-scroll-label">Ready to explore?</div>
+      <button class="g-scroll-btn" onclick="triggerPortal()">
+        <span class="g-arrow-ani">↑</span> Enter the World
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ 3D PORTAL SCENE ════ -->
+<div id="portal-scene">
+  <div class="portal-tunnel" id="portal-tunnel">
+    <!-- rings injected by JS -->
+  </div>
+</div>
+<div id="scroll-hint">
+  <div class="scroll-hint-inner">
+    <div class="scroll-hint-text">↑ Scroll Up to Begin</div>
+    <div class="scroll-hint-arrow">↑</div>
+  </div>
+</div>
+
+<!-- ════ STICKY HEADER ════ -->
+<div id="main-content" style="display:none;">
+
+<header id="site-header">
+  <a class="header-logo" onclick="scrollTo({top:0,behavior:'smooth'})">Word <span>Problem Bank</span></a>
+  <nav class="header-nav">
+    <a class="hnav-btn" href="#project-info"><span class="icon">🎓</span><span class="label">About</span></a>
+    <a class="hnav-btn" href="#polya"><span class="icon">📐</span><span class="label">Polya</span></a>
+    <a class="hnav-btn" href="#quiz"><span class="icon">🎮</span><span class="label">Quiz</span></a>
+    <a class="hnav-btn" onclick="openRepoModal()"><span class="icon">📁</span><span class="label">Repository</span></a>
+    <a class="hnav-btn primary" onclick="tryOpenAnswerKey()"><span class="icon">🔑</span><span class="label">Answer Key</span></a>
+  </nav>
+</header>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-char">∑</div>
+  <div class="hero-badge"><span class="badge-dot"></span>Interactive Portfolio · Final Output</div>
+  <h1 class="hero-title">
+    Word
+    <em>Problem Bank</em>
+  </h1>
+  <p class="hero-desc">A gamified collection of 30 mathematical word problems solved through Polya's Four-Step Method. Take the quiz, beat the timer, then explore detailed solutions.</p>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-num">30</div><div class="hstat-label">Problems</div></div>
+    <div class="hstat"><div class="hstat-num">04</div><div class="hstat-label">Steps</div></div>
+    <div class="hstat"><div class="hstat-num">06</div><div class="hstat-label">Categories</div></div>
+    <div class="hstat"><div class="hstat-num" id="hero-score">0</div><div class="hstat-label">Score</div></div>
+  </div>
+  <div class="hero-btns">
+    <a class="h-btn h-btn-primary" href="#quiz">🎮 Start Quiz</a>
+    <a class="h-btn h-btn-outline" href="#polya">📖 Polya's Method</a>
+  </div>
+</section>
+
+<!-- ════ PROJECT INFO ════ -->
+<section id="project-info" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Project Details</div>
+    <h2 class="section-title">About This Portfolio</h2>
+    <p class="section-sub">Mathematics in the Modern World · Final Output</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-chip reveal" style="transition-delay:.05s">
+      <div class="info-chip-label">Project Name</div>
+      <div class="info-chip-val">Word Problem Bank</div>
+    </div>
+    <div class="info-chip reveal" style="transition-delay:.1s">
+      <div class="info-chip-label">Output Type</div>
+      <div class="info-chip-val">Final Output</div>
+    </div>
+    <div class="info-chip reveal" style="transition-delay:.15s">
+      <div class="info-chip-label">Subject</div>
+      <div class="info-chip-val">Mathematics in the Modern World</div>
+    </div>
+    <div class="info-chip reveal" style="transition-delay:.2s">
+      <div class="info-chip-label">Course Professor</div>
+      <div class="info-chip-val">Raquel Dawn Gocon</div>
+    </div>
+    <div class="info-chip featured reveal" style="transition-delay:.25s">
+      <div>
+        <div class="info-chip-label">Created By</div>
+        <div class="info-chip-val">Ricky G. Dela Torre Jr.</div>
+      </div>
+      <div class="info-author-badge">✍️ Author</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ POLYA ════ -->
+<section id="polya" class="section" style="background:var(--bg2);">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">The Framework</div>
+    <h2 class="section-title">Polya's Four-Step Method</h2>
+    <p class="section-sub">Every problem in this bank is solved using George Pólya's systematic approach to mathematical problem solving.</p>
+  </div>
+  <div class="polya-steps-grid">
+    <div class="polya-step ps1 reveal" style="transition-delay:.05s">
+      <span class="polya-step-icon">🔍</span>
+      <div class="polya-step-num">Step 01</div>
+      <div class="polya-step-name">Understand</div>
+      <div class="polya-step-desc">Identify what is given, what is unknown, and what the problem is asking. Restate it clearly.</div>
+    </div>
+    <div class="polya-step ps2 reveal" style="transition-delay:.12s">
+      <span class="polya-step-icon">🗺️</span>
+      <div class="polya-step-num">Step 02</div>
+      <div class="polya-step-name">Devise a Plan</div>
+      <div class="polya-step-desc">Choose a strategy: set up equations, draw diagrams, look for patterns, or work backwards.</div>
+    </div>
+    <div class="polya-step ps3 reveal" style="transition-delay:.19s">
+      <span class="polya-step-icon">⚙️</span>
+      <div class="polya-step-num">Step 03</div>
+      <div class="polya-step-name">Carry Out</div>
+      <div class="polya-step-desc">Execute the plan step by step, showing all calculations clearly and logically.</div>
+    </div>
+    <div class="polya-step ps4 reveal" style="transition-delay:.26s">
+      <span class="polya-step-icon">✅</span>
+      <div class="polya-step-num">Step 04</div>
+      <div class="polya-step-name">Review</div>
+      <div class="polya-step-desc">Verify the answer satisfies all conditions and makes sense in the context of the problem.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ QUIZ ════ -->
+<section id="quiz" class="section">
+  <div class="section-header reveal">
+    <div class="section-eyebrow">Interactive Quiz</div>
+    <h2 class="section-title">Problem Bank Challenge</h2>
+    <p class="section-sub">Select the correct answer before the timer runs out, then view the full Polya solution.</p>
+  </div>
+  <!-- SCORE BAR -->
+  <div class="quiz-controls reveal">
+    <div class="quiz-score-bar">
+      <div class="score-item score-correct"><div class="score-num" id="sc-correct">0</div><div class="score-label">Correct</div></div>
+      <div class="score-div"></div>
+      <div class="score-item score-wrong"><div class="score-num" id="sc-wrong">0</div><div class="score-label">Wrong</div></div>
+      <div class="score-div"></div>
+      <div class="score-item score-total"><div class="score-num" id="sc-total">0</div><div class="score-label">Answered</div></div>
+    </div>
+    <div style="display:flex;gap:.6rem;align-items:center;">
+      <button class="hnav-btn" onclick="openRepoModal()" style="font-size:.75rem;"><span>📁</span> Repository</button>
+      <button class="hnav-btn primary" onclick="openRandom()" style="font-size:.75rem;"><span>🎲</span> Random</button>
+    </div>
+  </div>
+
+  <!-- SINGLE QUESTION CARD -->
+  <div style="max-width:640px;margin:0 auto;position:relative;">
+    <div id="quiz-card-container" class="qcard" style="border-radius:var(--r-lg);min-height:420px;position:relative;overflow:hidden;">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer id="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-col-title">Project Info</div>
+      <div class="footer-detail">
+        <div class="fd-row"><strong>Project:</strong> Word Problem Bank</div>
+        <div class="fd-row"><strong>Subject:</strong> Mathematics in the Modern World</div>
+        <div class="fd-row"><strong>Output:</strong> Final Output</div>
+        <div class="fd-row"><strong>Professor:</strong> Raquel Dawn Gocon</div>
+        <div class="fd-row"><strong>Author:</strong> Ricky G. Dela Torre Jr.</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Polya's Method</div>
+      <div class="footer-polya-list">
+        <div class="fp-item"><span class="fp-dot" style="background:var(--rose)"></span>Step 01 · Understand the Problem</div>
+        <div class="fp-item"><span class="fp-dot" style="background:var(--blue)"></span>Step 02 · Devise a Plan</div>
+        <div class="fp-item"><span class="fp-dot" style="background:var(--teal)"></span>Step 03 · Carry Out the Plan</div>
+        <div class="fp-item"><span class="fp-dot" style="background:var(--amber)"></span>Step 04 · Review the Solution</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Quick Navigation</div>
+      <div class="footer-nav-list">
+        <a class="fn-link" href="#hero">↑ Back to Top</a>
+        <a class="fn-link" href="#project-info">📋 Project Details</a>
+        <a class="fn-link" href="#polya">🧭 Polya's Method</a>
+        <a class="fn-link" href="#quiz">🎮 Quiz · All 30 Problems</a>
+      </div>
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <div class="footer-bottom-brand">Word Problem Bank</div>
+    <div class="footer-bottom-info">Mathematics in the Modern World · Polya's Method · 30 Problems · Prof. Raquel Dawn Gocon</div>
+  </div>
+</footer>
+
+</div><!-- end main-content -->
+
+<!-- ════ REPO MODAL ════ -->
+<div id="repo-overlay" onclick="closeRepoModal(event)" style="position:fixed;inset:0;z-index:6500;background:rgba(26,29,46,0.6);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+  <div id="repo-modal" style="background:var(--surface);border-radius:20px;width:100%;max-width:680px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(26,29,46,0.3);transform:translateY(24px) scale(.97);transition:transform .35s cubic-bezier(0.16,1,0.3,1);border:1.5px solid var(--border);">
+    <div style="padding:1.6rem 2rem 1rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:10;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;">Student Repository</div>
+        <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:var(--ink);">📁 Files &amp; Resources</div>
+      </div>
+      <button onclick="closeRepoDirect()" style="width:32px;height:32px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);color:var(--muted);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>
+    <div style="padding:1.5rem 2rem 2rem;" id="repo-body">
+      <!-- Upload Zone -->
+      <div id="repo-dropzone" style="border:2px dashed var(--border);border-radius:var(--r);padding:1.8rem;text-align:center;margin-bottom:1rem;cursor:pointer;transition:all .2s;background:var(--bg);" onclick="document.getElementById('repo-file-input').click()" ondragover="repoDragOver(event)" ondragleave="repoDragLeave(event)" ondrop="repoDrop(event)">
+        <div style="font-size:2.2rem;margin-bottom:.5rem;">📂</div>
+        <div style="font-size:.88rem;font-weight:700;color:var(--ink2);margin-bottom:.25rem;">Upload Files</div>
+        <div style="font-size:.72rem;color:var(--muted);">Click or drag & drop · PDF, images, documents</div>
+        <input type="file" id="repo-file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.pptx,.xlsx,.txt" style="display:none;" onchange="repoHandleFiles(this.files)">
+      </div>
+      <!-- Share banner -->
+      <div style="background:var(--amber-l);border:1.5px solid rgba(232,137,12,.25);border-radius:var(--r-sm);padding:.7rem 1rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:.72rem;font-weight:700;color:var(--amber);">📤 Share files with others</div>
+          <div style="font-size:.68rem;color:var(--ink2);">Downloads a new HTML file with your files embedded inside</div>
+        </div>
+        <div style="display:flex;gap:.5rem;">
+          <button onclick="exportRepoBundle()" style="padding:.4rem .9rem;background:var(--amber);color:#fff;border:none;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;">📦 Export HTML</button>
+          <label style="padding:.4rem .9rem;background:var(--surface);color:var(--amber);border:1.5px solid var(--amber);border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;" title="Import a JSON bundle manually">
+            ⬆ JSON<input type="file" accept=".json" style="display:none;" onchange="importRepoBundle(this)">
+          </label>
+        </div>
+      </div>
+      <!-- File list -->
+      <div id="repo-file-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PDF / ANSWER KEY MODAL ════ -->
+<div id="pdf-overlay" onclick="closePdfModal(event)" style="position:fixed;inset:0;z-index:6000;background:rgba(26,29,46,0.6);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+  <div id="pdf-modal" style="background:var(--surface);border-radius:20px;width:100%;max-width:800px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(26,29,46,0.3);transform:translateY(24px) scale(.97);transition:transform .35s cubic-bezier(0.16,1,0.3,1);border:1.5px solid var(--border);">
+    <div style="padding:1.8rem 2rem 1.2rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:10;border-radius:20px 20px 0 0;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem;">Answer Key & Problem Bank</div>
+        <div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:var(--ink);">📋 All 30 Problems</div>
+      </div>
+      <div style="display:flex;gap:.6rem;align-items:center;">
+        <button onclick="printAnswerKey()" style="padding:.6rem 1.2rem;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.4rem;">🖨️ Print / Save PDF</button>
+        <button onclick="closePdfDirect()" style="width:32px;height:32px;border-radius:50%;background:var(--bg);border:1.5px solid var(--border);color:var(--muted);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;">✕</button>
+      </div>
+    </div>
+    <div id="pdf-content" style="padding:1.5rem 2rem 2rem;"></div>
+  </div>
+</div>
+
+<!-- ════ SOLUTION MODAL ════ -->
+<div id="sol-overlay" onclick="closeSolModal(event)">
+  <div id="sol-modal">
+    <div class="sol-header">
+      <div class="sol-header-top">
+        <div class="sol-problem-num" id="sol-num"></div>
+        <button class="sol-close" onclick="closeSolDirect()">✕</button>
+      </div>
+      <div class="sol-title" id="sol-title"></div>
+      <div class="sol-problem-text" id="sol-problem"></div>
+    </div>
+    <div class="sol-body" id="sol-body"></div>
+  </div>
+</div>
+
+<script>
+/* ═══ PROBLEMS DATA (with full s3html) ═══ */
+const problems=[
+{id:1,title:"The Handshake Problem",cat:"logic",diff:2,time:75,bg:"🤝",
+ q:"In a room of 10 people, each person shakes hands with every other person exactly once. How many handshakes occur?",
+ choices:["40","45","50","55"],correct:1,answer:"45 Handshakes",
+ s1:`<p><strong>📌 What is given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:1.9;"><li>There are <strong>10 people</strong> in a room.</li><li>Each person shakes hands with <strong>every other person exactly once</strong>.</li></ul><p><strong>❓ What we need to find:</strong> The <em>total number of unique handshakes</em>.</p><div class="highlight-box">⚠️ Important: A handshake between Person A and Person B is the <em>same</em> handshake as Person B and Person A — we must not count it twice!</div>`,
+ s2:`<p>We can use two strategies:</p><ol style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li><strong>Arithmetic Series:</strong> Person 1 shakes 9 hands, Person 2 shakes 8 new hands, and so on.</li><li><strong>Combination Formula:</strong> Choose 2 people from 10: <code>C(10,2) = 10! / (2! × 8!)</code></li></ol>`,
+ s3html:`<p style="margin-bottom:.8rem;font-weight:600;">🔢 Method 1: Arithmetic Series</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Person 1 → 9 new handshakes</span><span class="eq-line">Person 2 → 8 new handshakes</span><span class="eq-line">Person 3 → 7 new handshakes</span><span class="eq-line">⋮</span><span class="eq-line">Person 9 → 1 new handshake</span><span class="eq-line">Person 10 → 0 (all done)</span><span class="eq-line">Total = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = <strong>45</strong></span></div>
+<p style="margin:.8rem 0;font-weight:600;">📊 Running Total Table</p>
+<table class="step-table"><thead><tr><th>Person #</th><th>New Handshakes</th><th>Running Total</th></tr></thead><tbody>
+<tr><td>1</td><td>9</td><td>9</td></tr><tr><td>2</td><td>8</td><td>17</td></tr><tr><td>3</td><td>7</td><td>24</td></tr><tr><td>4</td><td>6</td><td>30</td></tr><tr><td>5</td><td>5</td><td>35</td></tr><tr><td>6</td><td>4</td><td>39</td></tr><tr><td>7</td><td>3</td><td>42</td></tr><tr><td>8</td><td>2</td><td>44</td></tr><tr><td>9</td><td>1</td><td><strong>45</strong></td></tr><tr><td>10</td><td>0</td><td><strong>45</strong></td></tr>
+</tbody></table>
+<p style="margin:.8rem 0;font-weight:600;">🔢 Method 2: Combination Formula</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">C(n, 2) = n(n − 1) / 2</span><span class="eq-line">C(10, 2) = 10 × 9 / 2 = 90 / 2 = <strong>45</strong></span></div>
+<div class="highlight-box">✅ Both methods confirm: <strong>45 total handshakes</strong></div>`,
+ s4:`<p>Let's verify: Using the formula C(10,2) = 45 ✔</p><p>Using the series: 9+8+7+6+5+4+3+2+1 = 45 ✔</p><div class="highlight-box">The answer is consistent — <strong>45 unique handshakes</strong> occur when 10 people each shake hands once with everyone else.</div>`},
+
+{id:2,title:"Consecutive Integers",cat:"algebra",diff:1,time:45,bg:"🔢",
+ q:"The sum of three consecutive integers is 72. Find the integers.",
+ choices:["21, 22, 23","22, 23, 24","23, 24, 25","24, 25, 26"],correct:2,answer:"23, 24, and 25",
+ s1:`<p><strong>📌 What is given:</strong> Three consecutive integers whose sum is <strong>72</strong>.</p><p style="margin-top:.5rem;"><strong>❓ What we need:</strong> The three integers.</p><div class="highlight-box">Consecutive integers differ by 1: if the first is x, the others are x+1 and x+2.</div>`,
+ s2:`<p>Let the first integer = <strong>x</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>First integer: <strong>x</strong></li><li>Second integer: <strong>x + 1</strong></li><li>Third integer: <strong>x + 2</strong></li></ul><p>Set up the equation: <strong>x + (x+1) + (x+2) = 72</strong></p>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">✏️ Solving the equation step by step:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Step 1: Write the equation</span><span class="eq-line">x + (x + 1) + (x + 2) = 72</span><span class="eq-line">Step 2: Combine like terms</span><span class="eq-line">3x + 3 = 72</span><span class="eq-line">Step 3: Subtract 3 from both sides</span><span class="eq-line">3x = 69</span><span class="eq-line">Step 4: Divide both sides by 3</span><span class="eq-line">x = 23</span></div>
+<p style="margin:.7rem 0;font-weight:600;">📊 The Three Integers:</p>
+<table class="step-table"><thead><tr><th>Variable</th><th>Expression</th><th>Value</th></tr></thead><tbody>
+<tr><td>First</td><td>x</td><td><strong>23</strong></td></tr><tr><td>Second</td><td>x + 1</td><td><strong>24</strong></td></tr><tr><td>Third</td><td>x + 2</td><td><strong>25</strong></td></tr><tr><td>Sum</td><td>x+(x+1)+(x+2)</td><td><strong>72 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The three consecutive integers are <strong>23, 24, and 25</strong>.</div>`,
+ s4:`<p>Check: 23 + 24 + 25 = <strong>72</strong> ✔</p><p style="margin-top:.4rem;">They are consecutive (differ by 1): 24−23=1 ✔, 25−24=1 ✔</p><div class="highlight-box">Answer verified — <strong>23, 24, and 25</strong>.</div>`},
+
+{id:3,title:"Farmer's Animals",cat:"algebra",diff:2,time:75,bg:"🐄",
+ q:"A farmer counts 20 animals (cows and chickens). Altogether there are 58 legs. How many cows are there?",
+ choices:["7","8","9","11"],correct:2,answer:"9 Cows and 11 Chickens",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Total animals: <strong>20</strong></li><li>Total legs: <strong>58</strong></li><li>Cows have <strong>4 legs</strong>; Chickens have <strong>2 legs</strong></li></ul><p><strong>❓ Find:</strong> Number of cows and chickens.</p>`,
+ s2:`<p>Let <strong>C</strong> = number of cows, <strong>K</strong> = number of chickens.</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Equation 1 (animals):  C + K = 20</span><span class="eq-line">Equation 2 (legs):     4C + 2K = 58</span></div><p style="margin-top:.5rem;">Strategy: Substitution — express K in terms of C, then substitute.</p>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">✏️ Solving by Substitution:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">From Equation 1:</span><span class="eq-line">K = 20 − C  ...(i)</span><span class="eq-line">Substitute (i) into Equation 2:</span><span class="eq-line">4C + 2(20 − C) = 58</span><span class="eq-line">4C + 40 − 2C = 58</span><span class="eq-line">2C = 58 − 40</span><span class="eq-line">2C = 18</span><span class="eq-line">C = 9  ← number of cows</span><span class="eq-line">From (i):</span><span class="eq-line">K = 20 − 9 = 11  ← number of chickens</span></div>
+<p style="margin:.7rem 0;font-weight:600;">📊 Verification Table:</p>
+<table class="step-table"><thead><tr><th>Animal</th><th>Count</th><th>Legs Each</th><th>Total Legs</th></tr></thead><tbody>
+<tr><td>🐄 Cows</td><td>9</td><td>4</td><td>36</td></tr><tr><td>🐔 Chickens</td><td>11</td><td>2</td><td>22</td></tr><tr><td><strong>Total</strong></td><td><strong>20 ✓</strong></td><td>—</td><td><strong>58 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ <strong>9 cows</strong> and <strong>11 chickens</strong>.</div>`,
+ s4:`<p>9 + 11 = 20 animals ✔ | (9×4) + (11×2) = 36 + 22 = 58 legs ✔</p><div class="highlight-box">Both conditions satisfied — <strong>9 cows and 11 chickens</strong>.</div>`},
+
+{id:4,title:"Mary and Ann's Ages",cat:"algebra",diff:3,time:120,bg:"👩",
+ q:"Mary is 24. She is twice as old as Ann was when Mary was as old as Ann is now. How old is Ann?",
+ choices:["16","18","20","22"],correct:1,answer:"Ann is 18 years old",
+ s1:`<p><strong>📌 Given:</strong> Mary is currently <strong>24</strong> years old.</p><p style="margin-top:.5rem;"><strong>❓ Find:</strong> Ann's current age.</p><div class="highlight-box">Key insight: The age <em>difference</em> between Mary and Ann is constant throughout time.</div><p style="margin-top:.5rem;">Let Ann's current age = <strong>x</strong>. Age difference = 24 − x.</p>`,
+ s2:`<p>When Mary was as old as Ann is now (age x), Ann was younger by the same difference:</p><div class="math-block">Ann's past age = x − (24 − x) = 2x − 24</div><p style="margin-top:.5rem;">The problem states: Mary's current age = <strong>2 × Ann's past age</strong></p><div class="math-block">24 = 2 × (2x − 24)</div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">✏️ Solving the equation:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">24 = 2(2x − 24)</span><span class="eq-line">24 = 4x − 48</span><span class="eq-line">4x = 72</span><span class="eq-line">x = 18</span></div>
+<p style="margin:.7rem 0;font-weight:600;">📊 Timeline Verification:</p>
+<table class="step-table"><thead><tr><th>Time</th><th>Mary's Age</th><th>Ann's Age</th><th>Ratio</th></tr></thead><tbody>
+<tr><td>6 years ago</td><td>18 (= Ann's current age)</td><td>12 (= Ann's past age)</td><td>—</td></tr><tr><td>Now</td><td><strong>24</strong></td><td><strong>18</strong></td><td>24 = 2 × 12 ✓</td></tr>
+</tbody></table><div class="highlight-box">✅ Ann is currently <strong>18 years old</strong>.</div>`,
+ s4:`<p>Age difference = 24 − 18 = 6 years.</p><p>6 years ago: Mary was 18, Ann was 12. Is 24 = 2×12? <strong>Yes ✔</strong></p><div class="highlight-box">Answer verified — <strong>Ann is 18 years old</strong>.</div>`},
+
+{id:5,title:"The Dropped Ball",cat:"sequences",diff:2,time:75,bg:"🏀",
+ q:"A ball dropped from 10m rebounds to half its height each time. How far has it traveled when it hits the ground the 4th time?",
+ choices:["25m","27.5m","30m","22.5m"],correct:1,answer:"27.5 Meters",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Initial drop height: <strong>10 m</strong></li><li>Each rebound = <strong>½ of previous height</strong></li></ul><p><strong>❓ Find:</strong> Total distance traveled when ball hits the ground the <strong>4th time</strong>.</p>`,
+ s2:`<p>Track the ball's path phase by phase:</p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>1st fall → 1st ground hit</li><li>1st rise + 2nd fall → 2nd ground hit</li><li>2nd rise + 3rd fall → 3rd hit</li><li>3rd rise + 4th fall → 4th hit</li></ul>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">📊 Ball Path Tracking:</p>
+<table class="step-table"><thead><tr><th>Phase</th><th>Direction</th><th>Height</th><th>Distance</th><th>Ground Hit #</th></tr></thead><tbody>
+<tr><td>1</td><td>⬇️ Fall</td><td>10 m</td><td>10 m</td><td>1st</td></tr>
+<tr><td>2</td><td>⬆️ Rise</td><td>5 m</td><td>5 m</td><td>—</td></tr>
+<tr><td>3</td><td>⬇️ Fall</td><td>5 m</td><td>5 m</td><td>2nd</td></tr>
+<tr><td>4</td><td>⬆️ Rise</td><td>2.5 m</td><td>2.5 m</td><td>—</td></tr>
+<tr><td>5</td><td>⬇️ Fall</td><td>2.5 m</td><td>2.5 m</td><td>3rd</td></tr>
+<tr><td>6</td><td>⬆️ Rise</td><td>1.25 m</td><td>1.25 m</td><td>—</td></tr>
+<tr><td>7</td><td>⬇️ Fall</td><td>1.25 m</td><td>1.25 m</td><td>4th</td></tr>
+</tbody></table>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Total = 10 + 5 + 5 + 2.5 + 2.5 + 1.25 + 1.25</span><span class="eq-line">= 10 + 10 + 5 + 2.5</span><span class="eq-line">= <strong>27.5 meters</strong></span></div>
+<div class="highlight-box">✅ Total distance when hitting the ground the 4th time = <strong>27.5 m</strong></div>`,
+ s4:`<p>10 + 10 + 5 + 2.5 = 27.5 m ✔. Each rebound is exactly ½ the prior height ✔</p><div class="highlight-box">Verified — <strong>27.5 meters</strong> total distance.</div>`},
+
+{id:6,title:"Two-Digit Number",cat:"algebra",diff:3,time:120,bg:"🔡",
+ q:"A two-digit number equals 4× the sum of its digits. Adding 18 reverses the digits. What is the number?",
+ choices:["36","24","42","48"],correct:1,answer:"24",
+ s1:`<p><strong>📌 Given:</strong> A two-digit number with digits <strong>x</strong> (tens) and <strong>y</strong> (units).</p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Condition 1: Number = 4 × (sum of digits)</li><li>Condition 2: Number + 18 = reversed number</li></ul>`,
+ s2:`<p>Represent the number as <strong>10x + y</strong>.</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Equation 1: 10x + y = 4(x + y)</span><span class="eq-line">Equation 2: 10x + y + 18 = 10y + x</span></div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">✏️ Simplifying Equation 1:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">10x + y = 4x + 4y</span><span class="eq-line">10x − 4x = 4y − y</span><span class="eq-line">6x = 3y</span><span class="eq-line">y = 2x  ...(i)</span></div>
+<p style="font-weight:600;margin:.7rem 0 .5rem;">✏️ Simplifying Equation 2:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">10x + y + 18 = 10y + x</span><span class="eq-line">9x − 9y = −18</span><span class="eq-line">y − x = 2  ...(ii)</span></div>
+<p style="font-weight:600;margin:.7rem 0 .5rem;">✏️ Substituting (i) into (ii):</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">2x − x = 2</span><span class="eq-line">x = 2</span><span class="eq-line">y = 2(2) = 4</span></div>
+<table class="step-table"><thead><tr><th>Check</th><th>Calculation</th><th>Result</th></tr></thead><tbody>
+<tr><td>Number</td><td>10(2) + 4</td><td><strong>24</strong></td></tr><tr><td>4 × digit sum</td><td>4 × (2+4) = 4×6</td><td><strong>24 ✓</strong></td></tr><tr><td>Reversed</td><td>24 + 18</td><td><strong>42 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The two-digit number is <strong>24</strong>.</div>`,
+ s4:`<p>24 = 4×(2+4) ✔ | 24 + 18 = 42 (digits reversed: 24→42) ✔</p><div class="highlight-box">Both conditions satisfied — the number is <strong>24</strong>.</div>`},
+
+{id:7,title:"Rectangle Dimensions",cat:"geometry",diff:1,time:45,bg:"▭",
+ q:"A rectangle has perimeter 20m and area 24m². What are its dimensions?",
+ choices:["3m × 8m","4m × 6m","5m × 5m","2m × 10m"],correct:1,answer:"4 m × 6 m",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Perimeter = <strong>20 m</strong></li><li>Area = <strong>24 m²</strong></li></ul><p><strong>❓ Find:</strong> Length (L) and Width (W).</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">From Perimeter: 2(L + W) = 20 → L + W = 10</span><span class="eq-line">From Area:      L × W = 24</span></div><p style="margin-top:.5rem;">Strategy: Test integer factor pairs of 24 that also sum to 10.</p>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">📊 Testing Factor Pairs of 24:</p>
+<table class="step-table"><thead><tr><th>L</th><th>W</th><th>L + W</th><th>L × W</th><th>Valid?</th></tr></thead><tbody>
+<tr><td>1</td><td>24</td><td>25</td><td>24</td><td>❌ Sum ≠ 10</td></tr><tr><td>2</td><td>12</td><td>14</td><td>24</td><td>❌ Sum ≠ 10</td></tr><tr><td>3</td><td>8</td><td>11</td><td>24</td><td>❌ Sum ≠ 10</td></tr><tr><td>4</td><td>6</td><td>10</td><td>24</td><td>✅ Both match!</td></tr><tr><td>5</td><td>5</td><td>10</td><td>25</td><td>❌ Product ≠ 24</td></tr>
+</tbody></table>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">L = 6 m, W = 4 m</span><span class="eq-line">Perimeter = 2(6 + 4) = 20 m ✓</span><span class="eq-line">Area = 6 × 4 = 24 m² ✓</span></div>
+<div class="highlight-box">✅ Dimensions are <strong>4 m × 6 m</strong>.</div>`,
+ s4:`<p>P = 2(4+6) = 20 m ✔ | A = 4×6 = 24 m² ✔</p><div class="highlight-box">Answer verified — <strong>4 m × 6 m</strong>.</div>`},
+
+{id:8,title:"Pipe A and Pipe B",cat:"rates",diff:2,time:75,bg:"🚰",
+ q:"Pipe A fills a tank in 2 hours and Pipe B in 3 hours. How long if both are open?",
+ choices:["1 hr","1.2 hr","1.5 hr","2 hr"],correct:1,answer:"1.2 Hours (1 hr 12 min)",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Pipe A fills tank in <strong>2 hours</strong> → rate = 1/2 per hour</li><li>Pipe B fills tank in <strong>3 hours</strong> → rate = 1/3 per hour</li></ul><p><strong>❓ Find:</strong> Time T when both pipes are open.</p>`,
+ s2:`<p>Combined rate = sum of individual rates:</p><div class="math-block">1/T = 1/2 + 1/3</div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">✏️ Solving for T:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">1/T = 1/2 + 1/3</span><span class="eq-line">1/T = 3/6 + 2/6</span><span class="eq-line">1/T = 5/6</span><span class="eq-line">T = 6/5 = <strong>1.2 hours</strong></span><span class="eq-line">= 1 hour 12 minutes</span></div>
+<p style="margin:.7rem 0;font-weight:600;">📊 Rate Comparison:</p>
+<table class="step-table"><thead><tr><th>Pipe</th><th>Time Alone</th><th>Rate (per hour)</th><th>Work in 1.2 hr</th></tr></thead><tbody>
+<tr><td>Pipe A</td><td>2 hrs</td><td>1/2 = 0.5</td><td>0.5 × 1.2 = 0.60</td></tr><tr><td>Pipe B</td><td>3 hrs</td><td>1/3 ≈ 0.33</td><td>0.33 × 1.2 = 0.40</td></tr><tr><td><strong>Together</strong></td><td><strong>1.2 hrs</strong></td><td>5/6 ≈ 0.83</td><td><strong>1.00 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ Both pipes together fill the tank in <strong>1.2 hours (1 hr 12 min)</strong>.</div>`,
+ s4:`<p>0.60 + 0.40 = 1.00 (full tank) ✔</p><div class="highlight-box">Verified — <strong>1.2 hours or 1 hr 12 minutes</strong>.</div>`},
+
+{id:9,title:"Train and Bridge",cat:"rates",diff:1,time:45,bg:"🚂",
+ q:"A 100m train passes a pole in 5 seconds. How long to pass a 500m bridge?",
+ choices:["25 s","28 s","30 s","35 s"],correct:2,answer:"30 Seconds",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Train length: <strong>100 m</strong></li><li>Time to pass a pole: <strong>5 seconds</strong></li><li>Bridge length: <strong>500 m</strong></li></ul><p><strong>❓ Find:</strong> Time to completely pass the bridge.</p><div class="highlight-box">Key: To pass the bridge, the train must travel its own length PLUS the bridge length.</div>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Speed = Distance ÷ Time</span><span class="eq-line">Speed = 100 m ÷ 5 s = 20 m/s</span><span class="eq-line">Distance to cross bridge = Train + Bridge = 100 + 500 = 600 m</span><span class="eq-line">Time = Distance ÷ Speed</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Step 1: Find speed</span><span class="eq-line">Speed = 100 ÷ 5 = <strong>20 m/s</strong></span><span class="eq-line">Step 2: Find total distance</span><span class="eq-line">Distance = 100 m (train) + 500 m (bridge)</span><span class="eq-line">Distance = <strong>600 m</strong></span><span class="eq-line">Step 3: Find time</span><span class="eq-line">Time = 600 ÷ 20 = <strong>30 seconds</strong></span></div>
+<table class="step-table"><thead><tr><th>Scenario</th><th>Distance</th><th>Speed</th><th>Time</th></tr></thead><tbody>
+<tr><td>Pass a pole</td><td>100 m</td><td>20 m/s</td><td>5 s ✓</td></tr><tr><td>Pass the bridge</td><td>600 m</td><td>20 m/s</td><td><strong>30 s</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The train passes the bridge in <strong>30 seconds</strong>.</div>`,
+ s4:`<p>At 20 m/s, distance 600m takes 600÷20 = 30 s ✔</p><div class="highlight-box">Verified — <strong>30 seconds</strong>.</div>`},
+
+{id:10,title:"Test Score Needed",cat:"algebra",diff:1,time:45,bg:"📝",
+ q:"A student averages 80 on 4 tests. What score is needed on the 5th test to average 82?",
+ choices:["85","88","90","92"],correct:2,answer:"Score of 90",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Current average on 4 tests: <strong>80</strong></li><li>Target average on 5 tests: <strong>82</strong></li></ul><p><strong>❓ Find:</strong> Required score on the 5th test.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Total points needed = Target average × Number of tests</span><span class="eq-line">Current total = Current average × Number of tests done</span><span class="eq-line">5th score = Total needed − Current total</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Current total = 80 × 4 = <strong>320 points</strong></span><span class="eq-line">Target total  = 82 × 5 = <strong>410 points</strong></span><span class="eq-line">5th score needed = 410 − 320 = <strong>90</strong></span></div>
+<table class="step-table"><thead><tr><th>Test</th><th>Score</th></tr></thead><tbody>
+<tr><td>Tests 1–4</td><td>Total: 320 (avg 80)</td></tr><tr><td>Test 5</td><td><strong>90 (needed)</strong></td></tr><tr><td>Grand Total</td><td><strong>410</strong></td></tr><tr><td>Final Average</td><td><strong>410 ÷ 5 = 82 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The student needs a <strong>score of 90</strong> on the 5th test.</div>`,
+ s4:`<p>(320 + 90) ÷ 5 = 410 ÷ 5 = 82 ✔</p><div class="highlight-box">Verified — a score of <strong>90</strong> achieves the 82 average.</div>`},
+
+{id:11,title:"Simple Interest",cat:"algebra",diff:1,time:45,bg:"💰",
+ q:"How long for $500 to earn $100 at 5% simple interest?",
+ choices:["2 years","3 years","4 years","5 years"],correct:2,answer:"4 Years",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Principal P = <strong>$500</strong></li><li>Interest earned I = <strong>$100</strong></li><li>Rate r = <strong>5% = 0.05</strong> per year</li></ul><p><strong>❓ Find:</strong> Time t in years.</p>`,
+ s2:`<p>Use the Simple Interest Formula:</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">I = P × r × t</span><span class="eq-line">Solve for t: t = I ÷ (P × r)</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">t = I ÷ (P × r)</span><span class="eq-line">t = 100 ÷ (500 × 0.05)</span><span class="eq-line">t = 100 ÷ 25</span><span class="eq-line">t = <strong>4 years</strong></span></div>
+<table class="step-table"><thead><tr><th>Year</th><th>Interest Earned</th><th>Total Interest</th></tr></thead><tbody>
+<tr><td>1</td><td>$25</td><td>$25</td></tr><tr><td>2</td><td>$25</td><td>$50</td></tr><tr><td>3</td><td>$25</td><td>$75</td></tr><tr><td>4</td><td>$25</td><td><strong>$100 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ It takes <strong>4 years</strong> for $500 to earn $100 at 5% simple interest.</div>`,
+ s4:`<p>$500 × 0.05 = $25/year. $100 ÷ $25/year = 4 years ✔</p><div class="highlight-box">Verified — <strong>4 years</strong>.</div>`},
+
+{id:12,title:"Tree Planting",cat:"sequences",diff:1,time:40,bg:"🌳",
+ q:"A gardener plants a tree every 5 meters along a 50-meter path. How many trees are planted?",
+ choices:["9","10","11","12"],correct:2,answer:"11 Trees",
+ s1:`<p><strong>📌 Given:</strong> Path length = <strong>50 m</strong>, interval = <strong>5 m</strong>, trees at both ends.</p><p><strong>❓ Find:</strong> Total number of trees.</p><div class="highlight-box">⚠️ Include the tree at position 0 (start) and at position 50 (end)!</div>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Number of intervals = Path length ÷ Interval = 50 ÷ 5 = 10</span><span class="eq-line">Number of trees = Intervals + 1 = 10 + 1 = 11</span></div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">📍 Tree Positions:</p>
+<div class="math-block">0 m, 5 m, 10 m, 15 m, 20 m, 25 m, 30 m, 35 m, 40 m, 45 m, 50 m</div>
+<table class="step-table"><thead><tr><th>Tree #</th><th>Position</th><th>Tree #</th><th>Position</th></tr></thead><tbody>
+<tr><td>1</td><td>0 m</td><td>7</td><td>30 m</td></tr><tr><td>2</td><td>5 m</td><td>8</td><td>35 m</td></tr><tr><td>3</td><td>10 m</td><td>9</td><td>40 m</td></tr><tr><td>4</td><td>15 m</td><td>10</td><td>45 m</td></tr><tr><td>5</td><td>20 m</td><td>11</td><td>50 m</td></tr><tr><td>6</td><td>25 m</td><td>—</td><td>—</td></tr>
+</tbody></table><div class="highlight-box">✅ <strong>11 trees</strong> are planted.</div>`,
+ s4:`<p>Counting 0m to 50m in steps of 5 = 11 positions ✔</p><div class="highlight-box">Verified — <strong>11 trees</strong>.</div>`},
+
+{id:13,title:"Boat Round Trip",cat:"rates",diff:2,time:75,bg:"⛵",
+ q:"A boat's still-water speed is 12 mph; current is 2 mph. How long for a 70-mile round trip?",
+ choices:["5 hr","5.5 hr","6 hr","7 hr"],correct:2,answer:"6 Hours",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Still-water speed: <strong>12 mph</strong></li><li>Current speed: <strong>2 mph</strong></li><li>Total round trip: <strong>70 miles</strong> → 35 miles each way</li></ul>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Downstream speed = 12 + 2 = 14 mph</span><span class="eq-line">Upstream speed   = 12 − 2 = 10 mph</span><span class="eq-line">Time = Distance ÷ Speed</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Time downstream = 35 ÷ 14 = 2.5 hours</span><span class="eq-line">Time upstream   = 35 ÷ 10 = 3.5 hours</span><span class="eq-line">Total time      = 2.5 + 3.5 = <strong>6 hours</strong></span></div>
+<table class="step-table"><thead><tr><th>Leg</th><th>Speed</th><th>Distance</th><th>Time</th></tr></thead><tbody>
+<tr><td>⬇️ Downstream</td><td>14 mph</td><td>35 mi</td><td>2.5 hr</td></tr><tr><td>⬆️ Upstream</td><td>10 mph</td><td>35 mi</td><td>3.5 hr</td></tr><tr><td><strong>Total</strong></td><td>—</td><td><strong>70 mi</strong></td><td><strong>6 hr</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The round trip takes <strong>6 hours</strong>.</div>`,
+ s4:`<p>2.5 + 3.5 = 6 hrs ✔ | Total distance = 70 miles ✔</p><div class="highlight-box">Verified — <strong>6 hours</strong>.</div>`},
+
+{id:14,title:"Marble Probability",cat:"probability",diff:2,time:75,bg:"🔮",
+ q:"A bag has 3 red and 7 blue marbles. Probability of drawing 2 red without replacement?",
+ choices:["1/10","1/12","1/15","1/20"],correct:2,answer:"1/15 ≈ 6.67%",
+ s1:`<p><strong>📌 Given:</strong> 3 red + 7 blue = <strong>10 marbles</strong>. Draw 2 without replacement.</p><p><strong>❓ Find:</strong> P(both drawn are red).</p><div class="highlight-box">Without replacement: after the 1st draw, one marble is gone — only 9 remain.</div>`,
+ s2:`<p>Use the Multiplication Rule for dependent events:</p><div class="math-block">P(A and B) = P(A) × P(B|A)</div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">P(1st red) = 3/10</span><span class="eq-line">P(2nd red | 1st was red) = 2/9  ← only 9 left, 2 red remain</span><span class="eq-line">P(both red) = (3/10) × (2/9)</span><span class="eq-line">= 6/90</span><span class="eq-line">= <strong>1/15 ≈ 6.67%</strong></span></div>
+<table class="step-table"><thead><tr><th>Draw</th><th>Red Marbles</th><th>Total Marbles</th><th>Probability</th></tr></thead><tbody>
+<tr><td>1st draw</td><td>3</td><td>10</td><td>3/10 = 0.30</td></tr><tr><td>2nd draw</td><td>2</td><td>9</td><td>2/9 ≈ 0.222</td></tr><tr><td><strong>Both red</strong></td><td>—</td><td>—</td><td><strong>1/15 ≈ 6.67%</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ P(both red) = <strong>1/15 ≈ 6.67%</strong></div>`,
+ s4:`<p>6/90 = 1/15 ✔ | 1/15 ≈ 0.0667 = 6.67% ✔</p><div class="highlight-box">Verified — <strong>1/15 or approximately 6.67%</strong>.</div>`},
+
+{id:15,title:"Triangle Angles",cat:"geometry",diff:2,time:75,bg:"△",
+ q:"One angle is twice another; the third is 30° more than the second. Find the smallest angle.",
+ choices:["30°","37.5°","40°","45°"],correct:1,answer:"75°, 37.5°, and 67.5°",
+ s1:`<p><strong>📌 Given:</strong> A triangle with three angles where:</p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Angle A = twice Angle B</li><li>Angle C = Angle B + 30°</li><li>All angles sum to 180°</li></ul>`,
+ s2:`<p>Let Angle B = <strong>x</strong>. Then: A = 2x, C = x + 30</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">A + B + C = 180°</span><span class="eq-line">2x + x + (x + 30) = 180</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">2x + x + x + 30 = 180</span><span class="eq-line">4x + 30 = 180</span><span class="eq-line">4x = 150</span><span class="eq-line">x = 37.5°</span></div>
+<table class="step-table"><thead><tr><th>Angle</th><th>Expression</th><th>Value</th></tr></thead><tbody>
+<tr><td>A (largest)</td><td>2x</td><td><strong>75°</strong></td></tr><tr><td>B (smallest)</td><td>x</td><td><strong>37.5°</strong></td></tr><tr><td>C</td><td>x + 30</td><td><strong>67.5°</strong></td></tr><tr><td>Sum</td><td>—</td><td><strong>180° ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ Angles are <strong>75°, 37.5°, and 67.5°</strong>. The smallest is <strong>37.5°</strong>.</div>`,
+ s4:`<p>75 + 37.5 + 67.5 = 180° ✔ | A = 2×37.5 = 75 ✔ | C = 37.5+30 = 67.5 ✔</p><div class="highlight-box">Verified — angles <strong>75°, 37.5°, 67.5°</strong>.</div>`},
+
+{id:16,title:"Circle Overlap",cat:"geometry",diff:1,time:40,bg:"⭕",
+ q:"Two circles have radii 5 and 3; centers are 10 apart. Do they overlap?",
+ choices:["Yes, they overlap","Yes, they touch","No, they don't overlap","Not enough info"],correct:2,answer:"No — They Do Not Overlap",
+ s1:`<p><strong>📌 Given:</strong> Circle 1: r₁ = 5 | Circle 2: r₂ = 3 | Distance between centers: d = 10</p><div class="highlight-box">Rule: If d > r₁ + r₂ → separate. If d = r₁ + r₂ → externally tangent. If d < r₁ + r₂ → overlapping.</div>`,
+ s2:`<p>Compare distance d with sum of radii r₁ + r₂.</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">r₁ + r₂ = 5 + 3 = 8</span><span class="eq-line">d = 10</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">r₁ + r₂ = 5 + 3 = 8</span><span class="eq-line">d = 10</span><span class="eq-line">Since 10 > 8:</span><span class="eq-line">The circles do <strong>NOT overlap</strong></span></div>
+<table class="step-table"><thead><tr><th>Condition</th><th>Meaning</th><th>Our Case</th></tr></thead><tbody>
+<tr><td>d &lt; r₁+r₂</td><td>Circles overlap</td><td>10 &lt; 8? ❌</td></tr><tr><td>d = r₁+r₂</td><td>Externally tangent</td><td>10 = 8? ❌</td></tr><tr><td>d &gt; r₁+r₂</td><td>Separate (no overlap)</td><td>10 &gt; 8? ✅</td></tr>
+</tbody></table><div class="highlight-box">✅ The circles are <strong>completely separate</strong> — they do not overlap.</div>`,
+ s4:`<p>10 > 8 confirms the circles are externally separated ✔</p><div class="highlight-box">Verified — <strong>No overlap</strong>.</div>`},
+
+{id:17,title:"Starting Money",cat:"logic",diff:1,time:45,bg:"💵",
+ q:"A man spends half his money then loses $10. He has $20 left. How much did he start with?",
+ choices:["$50","$55","$60","$70"],correct:2,answer:"$60",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Ends with: <strong>$20</strong></li><li>Before ending: lost <strong>$10</strong></li><li>Before that: spent <strong>half</strong> his money</li></ul><p><strong>Strategy:</strong> Work <em>backwards</em> — reverse each operation.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Working backwards:</span><span class="eq-line">Undo losing $10 → add $10</span><span class="eq-line">Undo spending half → multiply by 2</span></div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">⬅️ Working Backwards:</p>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Final amount:             $20</span><span class="eq-line">Before losing $10:  20 + 10 = $30</span><span class="eq-line">Before spending half: 30 × 2 = <strong>$60</strong></span></div>
+<table class="step-table"><thead><tr><th>Step</th><th>Action</th><th>Amount</th></tr></thead><tbody>
+<tr><td>Start</td><td>Starting money</td><td><strong>$60</strong></td></tr><tr><td>→</td><td>Spend half: $60 ÷ 2</td><td>$30</td></tr><tr><td>→</td><td>Lose $10: $30 − $10</td><td>$20</td></tr><tr><td>End</td><td>Final amount</td><td><strong>$20 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ He started with <strong>$60</strong>.</div>`,
+ s4:`<p>$60 ÷ 2 = $30 → $30 − $10 = $20 ✔</p><div class="highlight-box">Verified — started with <strong>$60</strong>.</div>`},
+
+{id:18,title:"Square Area Factor",cat:"geometry",diff:2,time:60,bg:"⬛",
+ q:"If the area of a square is doubled, by what factor does its side increase?",
+ choices:["√3","√2","2","1.5"],correct:1,answer:"√2 ≈ 1.414",
+ s1:`<p><strong>📌 Given:</strong> A square with side s. Its area is doubled to 2s².</p><p><strong>❓ Find:</strong> Factor k such that new side = k × s.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Original area: A = s²</span><span class="eq-line">New area: 2A = (k × s)²</span><span class="eq-line">Solve for k.</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">2s² = (ks)²</span><span class="eq-line">2s² = k²s²</span><span class="eq-line">k² = 2</span><span class="eq-line">k = √2 ≈ <strong>1.414</strong></span></div>
+<table class="step-table"><thead><tr><th>Square</th><th>Side</th><th>Area</th></tr></thead><tbody>
+<tr><td>Original</td><td>s</td><td>s²</td></tr><tr><td>New (doubled area)</td><td>√2 · s ≈ 1.414s</td><td>2s²</td></tr><tr><td>Factor</td><td colspan="2"><strong>√2 ≈ 1.414</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The side increases by a factor of <strong>√2 ≈ 1.414</strong>.</div>`,
+ s4:`<p>(√2)² = 2 ✔ | Area doubles when side is multiplied by √2 ✔</p><div class="highlight-box">Verified — factor of <strong>√2</strong>.</div>`},
+
+{id:19,title:"Facing Page Numbers",cat:"algebra",diff:1,time:40,bg:"📖",
+ q:"The sum of two facing (consecutive) page numbers is 433. What are the pages?",
+ choices:["215 & 216","216 & 217","217 & 218","214 & 215"],correct:1,answer:"Pages 216 and 217",
+ s1:`<p><strong>📌 Given:</strong> Two facing pages (consecutive integers) sum to <strong>433</strong>.</p><p>Let the pages be <strong>x</strong> and <strong>x + 1</strong>.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">x + (x + 1) = 433</span><span class="eq-line">Solve for x.</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">2x + 1 = 433</span><span class="eq-line">2x = 432</span><span class="eq-line">x = 216</span><span class="eq-line">Pages: <strong>216 and 217</strong></span></div>
+<table class="step-table"><thead><tr><th>Page</th><th>Value</th></tr></thead><tbody>
+<tr><td>Left page (x)</td><td><strong>216</strong></td></tr><tr><td>Right page (x+1)</td><td><strong>217</strong></td></tr><tr><td>Sum</td><td><strong>433 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The facing pages are <strong>216 and 217</strong>.</div>`,
+ s4:`<p>216 + 217 = 433 ✔ | They are consecutive ✔</p><div class="highlight-box">Verified — pages <strong>216 and 217</strong>.</div>`},
+
+{id:20,title:"Rectangular Garden",cat:"geometry",diff:2,time:60,bg:"🌿",
+ q:"A garden's length is 5m more than its width. Perimeter is 70m. What is the area?",
+ choices:["250 m²","275 m²","300 m²","325 m²"],correct:2,answer:"300 Square Meters",
+ s1:`<p><strong>📌 Given:</strong> L = W + 5 | Perimeter = 70 m</p><p><strong>❓ Find:</strong> Area = L × W</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Perimeter formula: 2(L + W) = 70 → L + W = 35</span><span class="eq-line">Substitute L = W + 5:</span><span class="eq-line">(W + 5) + W = 35</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">2W + 5 = 35</span><span class="eq-line">2W = 30</span><span class="eq-line">W = 15 m</span><span class="eq-line">L = 15 + 5 = 20 m</span><span class="eq-line">Area = L × W = 20 × 15 = <strong>300 m²</strong></span></div>
+<table class="step-table"><thead><tr><th>Dimension</th><th>Value</th><th>Check</th></tr></thead><tbody>
+<tr><td>Width (W)</td><td>15 m</td><td>—</td></tr><tr><td>Length (L)</td><td>20 m</td><td>L = W + 5 = 20 ✓</td></tr><tr><td>Perimeter</td><td>2(20+15) = 70 m</td><td>✓</td></tr><tr><td>Area</td><td>20 × 15</td><td><strong>300 m²</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The area is <strong>300 m²</strong>.</div>`,
+ s4:`<p>P = 2(20+15) = 70 m ✔ | A = 20×15 = 300 m² ✔</p><div class="highlight-box">Verified — <strong>300 m²</strong>.</div>`},
+
+{id:21,title:"Father and Son Ages",cat:"algebra",diff:2,time:75,bg:"👨‍👦",
+ q:"A father is 3× his son's age. In 12 years he'll be 2× his son's age. How old is the father now?",
+ choices:["30","33","36","42"],correct:2,answer:"Father: 36, Son: 12",
+ s1:`<p><strong>📌 Given:</strong> Father = 3 × Son's age now. In 12 years: Father = 2 × Son's age.</p><p>Let Son = <strong>S</strong>, Father = <strong>3S</strong>.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">In 12 years:</span><span class="eq-line">Father's age: 3S + 12</span><span class="eq-line">Son's age:   S + 12</span><span class="eq-line">Equation: 3S + 12 = 2(S + 12)</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">3S + 12 = 2S + 24</span><span class="eq-line">3S − 2S = 24 − 12</span><span class="eq-line">S = 12</span><span class="eq-line">Father = 3 × 12 = <strong>36</strong></span></div>
+<table class="step-table"><thead><tr><th>Time</th><th>Son's Age</th><th>Father's Age</th><th>Ratio</th></tr></thead><tbody>
+<tr><td>Now</td><td>12</td><td><strong>36</strong></td><td>36 = 3×12 ✓</td></tr><tr><td>In 12 years</td><td>24</td><td>48</td><td>48 = 2×24 ✓</td></tr>
+</tbody></table><div class="highlight-box">✅ Father is <strong>36</strong>, Son is <strong>12</strong>.</div>`,
+ s4:`<p>Now: 36 = 3×12 ✔ | In 12 yrs: 48 = 2×24 ✔</p><div class="highlight-box">Verified — Father: <strong>36</strong>, Son: <strong>12</strong>.</div>`},
+
+{id:22,title:"Painting the Fence",cat:"rates",diff:1,time:45,bg:"🖌️",
+ q:"Alice paints a fence in 4 hours; Bob in 6 hours. How long together?",
+ choices:["2 hr","2.4 hr","3 hr","2.2 hr"],correct:1,answer:"2.4 Hours",
+ s1:`<p><strong>📌 Given:</strong> Alice: 4 hrs alone | Bob: 6 hrs alone.</p><p>Their rates: Alice = 1/4 fence/hr | Bob = 1/6 fence/hr.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Combined rate = 1/4 + 1/6</span><span class="eq-line">Time T = 1 ÷ (combined rate)</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">1/T = 1/4 + 1/6</span><span class="eq-line">1/T = 3/12 + 2/12 = 5/12</span><span class="eq-line">T = 12/5 = <strong>2.4 hours</strong></span></div>
+<table class="step-table"><thead><tr><th>Person</th><th>Rate</th><th>Work in 2.4 hrs</th></tr></thead><tbody>
+<tr><td>Alice</td><td>1/4</td><td>2.4/4 = 0.60</td></tr><tr><td>Bob</td><td>1/6</td><td>2.4/6 = 0.40</td></tr><tr><td>Together</td><td>5/12</td><td><strong>1.00 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ Together they finish in <strong>2.4 hours</strong>.</div>`,
+ s4:`<p>0.60 + 0.40 = 1.0 (complete fence) ✔</p><div class="highlight-box">Verified — <strong>2.4 hours</strong>.</div>`},
+
+{id:23,title:"The Torn Leaf",cat:"logic",diff:3,time:120,bg:"📄",
+ q:"A leaf is torn from a 40-page book. Remaining page numbers sum to 805. Which pages were torn?",
+ choices:["5 & 6","7 & 8","9 & 10","11 & 12"],correct:1,answer:"Pages 7 and 8",
+ s1:`<p><strong>📌 Given:</strong> 40-page book. One leaf (2 consecutive pages) is torn. Remaining sum = 805.</p><p>Sum of all pages 1–40 = <strong>820</strong> (using n(n+1)/2).</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Removed sum = 820 − 805 = 15</span><span class="eq-line">Let pages torn = x and x+1</span><span class="eq-line">x + (x+1) = 15</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Total sum 1–40 = 40×41/2 = <strong>820</strong></span><span class="eq-line">Remaining = 805</span><span class="eq-line">Torn sum = 820 − 805 = 15</span><span class="eq-line">x + (x + 1) = 15</span><span class="eq-line">2x + 1 = 15</span><span class="eq-line">2x = 14</span><span class="eq-line">x = 7</span></div>
+<table class="step-table"><thead><tr><th>Page</th><th>Value</th></tr></thead><tbody>
+<tr><td>First torn page (x)</td><td><strong>7</strong></td></tr><tr><td>Second torn page (x+1)</td><td><strong>8</strong></td></tr><tr><td>Sum of torn pages</td><td>7 + 8 = <strong>15</strong></td></tr><tr><td>Remaining sum</td><td>820 − 15 = <strong>805 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ The torn pages were <strong>7 and 8</strong>.</div>`,
+ s4:`<p>7 + 8 = 15 ✔ | 820 − 15 = 805 ✔</p><div class="highlight-box">Verified — pages <strong>7 and 8</strong> were torn out.</div>`},
+
+{id:24,title:"Fence Posts",cat:"sequences",diff:1,time:40,bg:"🪵",
+ q:"A farmer places posts every 10m along a 100m fence. How many posts are needed?",
+ choices:["9","10","11","12"],correct:2,answer:"11 Posts",
+ s1:`<p><strong>📌 Given:</strong> Fence length = 100 m | Interval = 10 m | Posts at both ends.</p><p><strong>❓ Find:</strong> Total number of posts.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Number of intervals = 100 ÷ 10 = 10</span><span class="eq-line">Number of posts = intervals + 1</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Intervals = 100 ÷ 10 = 10</span><span class="eq-line">Posts = 10 + 1 = <strong>11</strong></span></div>
+<table class="step-table"><thead><tr><th>Post #</th><th>Position</th><th>Post #</th><th>Position</th></tr></thead><tbody>
+<tr><td>1</td><td>0 m</td><td>7</td><td>60 m</td></tr><tr><td>2</td><td>10 m</td><td>8</td><td>70 m</td></tr><tr><td>3</td><td>20 m</td><td>9</td><td>80 m</td></tr><tr><td>4</td><td>30 m</td><td>10</td><td>90 m</td></tr><tr><td>5</td><td>40 m</td><td>11</td><td>100 m</td></tr><tr><td>6</td><td>50 m</td><td>—</td><td>—</td></tr>
+</tbody></table><div class="highlight-box">✅ <strong>11 fence posts</strong> are needed.</div>`,
+ s4:`<p>11 post positions from 0m to 100m (step 10) ✔</p><div class="highlight-box">Verified — <strong>11 posts</strong>.</div>`},
+
+{id:25,title:"Birthday Paradox",cat:"probability",diff:3,time:120,bg:"🎂",
+ q:"In a class of 23 students, approximately what is the probability two share a birthday?",
+ choices:["About 23%","About 35%","About 50%","About 70%"],correct:2,answer:"≈ 50.7%",
+ s1:`<p><strong>📌 Given:</strong> 23 students. 365 possible birthdays. Assume equal probability.</p><p><strong>❓ Find:</strong> P(at least 2 share a birthday).</p><div class="highlight-box">Strategy: Use the complement — P(at least one shared) = 1 − P(none share).</div>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">P(no shared) = (365/365) × (364/365) × (363/365) × ... × (343/365)</span><span class="eq-line">That's 23 fractions multiplied together.</span></div>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">📊 Probability Calculation:</p>
+<table class="step-table"><thead><tr><th>Person #</th><th>Fraction</th><th>Running P(no match)</th></tr></thead><tbody>
+<tr><td>1</td><td>365/365</td><td>1.0000</td></tr><tr><td>2</td><td>364/365</td><td>0.9973</td></tr><tr><td>5</td><td>361/365</td><td>0.9729</td></tr><tr><td>10</td><td>356/365</td><td>0.8831</td></tr><tr><td>20</td><td>346/365</td><td>0.5886</td></tr><tr><td>23</td><td>343/365</td><td><strong>≈ 0.4927</strong></td></tr>
+</tbody></table>
+<div class="math-block">P(at least one shared) = 1 − 0.4927 = <strong>0.5073 ≈ 50.7%</strong></div>
+<div class="highlight-box">🎉 With only 23 people, there's a >50% chance two share a birthday — counterintuitive!</div>`,
+ s4:`<p>1 − 0.4927 = 0.5073 ≈ 50.7% ✔</p><div class="highlight-box">Verified — approximately <strong>50.7%</strong> probability.</div>`},
+
+{id:26,title:"Infinite Bouncing Ball",cat:"sequences",diff:3,time:120,bg:"⚡",
+ q:"A ball dropped from 10m bounces to half height infinitely. What is total distance traveled?",
+ choices:["20m","25m","28m","30m"],correct:3,answer:"30 Meters",
+ s1:`<p><strong>📌 Given:</strong> Initial height = 10 m | Each bounce = ½ previous height | Bounces continue infinitely.</p><p><strong>❓ Find:</strong> Total distance traveled.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Total = Initial drop + Sum of all bounces (up + down)</span><span class="eq-line">Bounces form an infinite geometric series:</span><span class="eq-line">First up-bounce = 5 m, ratio r = 0.5</span><span class="eq-line">S = a/(1−r) for |r| &lt; 1</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Initial drop = 10 m</span><span class="eq-line">Bounce series (up AND down):</span><span class="eq-line">a (first full bounce) = 5 + 5 = 10 m</span><span class="eq-line">r = 0.5</span><span class="eq-line">S = 10/(1−0.5) = 10/0.5 = 20 m</span><span class="eq-line">Total = 10 + 20 = <strong>30 m</strong></span></div>
+<table class="step-table"><thead><tr><th>Bounce #</th><th>Up (m)</th><th>Down (m)</th><th>Subtotal</th></tr></thead><tbody>
+<tr><td>Initial drop</td><td>—</td><td>10</td><td>10</td></tr><tr><td>1</td><td>5</td><td>5</td><td>10</td></tr><tr><td>2</td><td>2.5</td><td>2.5</td><td>5</td></tr><tr><td>3</td><td>1.25</td><td>1.25</td><td>2.5</td></tr><tr><td>…∞</td><td>→0</td><td>→0</td><td>→0</td></tr><tr><td><strong>Total</strong></td><td colspan="3"><strong>30 m</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ Infinite bounces sum to exactly <strong>30 meters</strong> total distance.</div>`,
+ s4:`<p>10 + 10/(1−0.5) = 10 + 20 = 30 m ✔</p><div class="highlight-box">Verified — <strong>30 meters</strong> total.</div>`},
+
+{id:27,title:"Circular Seating",cat:"logic",diff:2,time:75,bg:"🪑",
+ q:"In how many ways can 6 people be seated around a circular table?",
+ choices:["60","120","720","360"],correct:1,answer:"120 Ways",
+ s1:`<p><strong>📌 Given:</strong> 6 people, circular arrangement. Rotations count as the same.</p><p><strong>❓ Find:</strong> Number of distinct arrangements.</p><div class="highlight-box">In circular permutations: fix one person to eliminate rotational duplicates, then arrange the rest.</div>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Circular permutations = (n − 1)!</span><span class="eq-line">For n = 6: (6 − 1)! = 5!</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">5! = 5 × 4 × 3 × 2 × 1</span><span class="eq-line">= 20 × 6 × 1</span><span class="eq-line">= <strong>120 ways</strong></span></div>
+<table class="step-table"><thead><tr><th>Arrangement Type</th><th>Formula</th><th>Result</th></tr></thead><tbody>
+<tr><td>Linear (6 people)</td><td>6!</td><td>720</td></tr><tr><td>Circular (÷ n rotations)</td><td>6!/6 = 5!</td><td><strong>120</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ There are <strong>120 distinct circular arrangements</strong> for 6 people.</div>`,
+ s4:`<p>5! = 120 ✔ | Linear 6! = 720 ÷ 6 = 120 ✔</p><div class="highlight-box">Verified — <strong>120 ways</strong>.</div>`},
+
+{id:28,title:"Cube Staircase",cat:"sequences",diff:2,time:75,bg:"🧱",
+ q:"A staircase uses cubes: 1 on step 1, 2 on step 2, etc. If 55 cubes are used, how many steps?",
+ choices:["8","9","10","11"],correct:2,answer:"10 Steps",
+ s1:`<p><strong>📌 Given:</strong> Staircase uses 1+2+3+...+n cubes = 55.</p><p>This is a triangular number: T_n = n(n+1)/2.</p>`,
+ s2:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">n(n+1)/2 = 55</span><span class="eq-line">n² + n − 110 = 0</span><span class="eq-line">Factor or use quadratic formula.</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">n² + n − 110 = 0</span><span class="eq-line">(n + 11)(n − 10) = 0</span><span class="eq-line">n = 10  (positive root only)</span></div>
+<table class="step-table"><thead><tr><th>Step #</th><th>Cubes Added</th><th>Total Cubes</th></tr></thead><tbody>
+<tr><td>1</td><td>1</td><td>1</td></tr><tr><td>2</td><td>2</td><td>3</td></tr><tr><td>3</td><td>3</td><td>6</td></tr><tr><td>5</td><td>5</td><td>15</td></tr><tr><td>8</td><td>8</td><td>36</td></tr><tr><td>10</td><td>10</td><td><strong>55 ✓</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ There are <strong>10 steps</strong> in the staircase.</div>`,
+ s4:`<p>10(10+1)/2 = 55 ✔ | 1+2+...+10 = 55 ✔</p><div class="highlight-box">Verified — <strong>10 steps</strong>.</div>`},
+
+{id:29,title:"Club Membership",cat:"logic",diff:1,time:45,bg:"🎭",
+ q:"30 students: 12 in Art, 15 in Music, 7 in both. How many are in neither club?",
+ choices:["8","10","12","13"],correct:1,answer:"10 Students",
+ s1:`<p><strong>📌 Given:</strong></p><ul style="margin:.5rem 0 .5rem 1.2rem;line-height:2;"><li>Total: <strong>30 students</strong></li><li>Art club: <strong>12</strong></li><li>Music club: <strong>15</strong></li><li>Both clubs: <strong>7</strong></li></ul>`,
+ s2:`<p>Use the Inclusion-Exclusion Principle:</p><div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">|A ∪ M| = |A| + |M| − |A ∩ M|</span><span class="eq-line">Neither = Total − |A ∪ M|</span></div>`,
+ s3html:`<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">In at least one = 12 + 15 − 7 = 20</span><span class="eq-line">Neither = 30 − 20 = <strong>10</strong></span></div>
+<table class="step-table"><thead><tr><th>Group</th><th>Count</th></tr></thead><tbody>
+<tr><td>Art only</td><td>12 − 7 = 5</td></tr><tr><td>Music only</td><td>15 − 7 = 8</td></tr><tr><td>Both</td><td>7</td></tr><tr><td>In at least one</td><td>5 + 8 + 7 = 20</td></tr><tr><td><strong>Neither</strong></td><td><strong>30 − 20 = 10</strong></td></tr>
+</tbody></table><div class="highlight-box">✅ <strong>10 students</strong> are in neither club.</div>`,
+ s4:`<p>20 in clubs + 10 neither = 30 ✔</p><div class="highlight-box">Verified — <strong>10 students</strong> in neither club.</div>`},
+
+{id:30,title:"Digit Product and Sum",cat:"algebra",diff:2,time:75,bg:"🔢",
+ q:"A two-digit number has digits with product 12 and sum 7. What are the possible numbers?",
+ choices:["26 and 62","34 and 43","23 and 32","48 and 84"],correct:1,answer:"34 and 43",
+ s1:`<p><strong>📌 Given:</strong> Digits x and y where x × y = 12 and x + y = 7.</p><p><strong>❓ Find:</strong> All two-digit numbers using these digits.</p>`,
+ s2:`<p>Find factor pairs of 12 and check which pair sums to 7.</p>`,
+ s3html:`<p style="font-weight:600;margin-bottom:.6rem;">📊 Testing Factor Pairs of 12:</p>
+<table class="step-table"><thead><tr><th>Pair</th><th>Product</th><th>Sum</th><th>Valid?</th></tr></thead><tbody>
+<tr><td>1 × 12</td><td>12</td><td>13</td><td>❌</td></tr><tr><td>2 × 6</td><td>12</td><td>8</td><td>❌</td></tr><tr><td>3 × 4</td><td>12</td><td>7</td><td>✅</td></tr><tr><td>4 × 3</td><td>12</td><td>7</td><td>✅</td></tr>
+</tbody></table>
+<div class="math-block" style="padding:.4rem .6rem .5rem;"><span class="eq-line">Digits are 3 and 4.</span><span class="eq-line">Possible numbers: 34 and 43</span></div>
+<table class="step-table"><thead><tr><th>Number</th><th>Digit Product</th><th>Digit Sum</th><th>Valid?</th></tr></thead><tbody>
+<tr><td>34</td><td>3×4 = 12 ✓</td><td>3+4 = 7 ✓</td><td>✅</td></tr><tr><td>43</td><td>4×3 = 12 ✓</td><td>4+3 = 7 ✓</td><td>✅</td></tr>
+</tbody></table><div class="highlight-box">✅ The possible numbers are <strong>34 and 43</strong>.</div>`,
+ s4:`<p>34: 3×4=12 ✔, 3+4=7 ✔ | 43: 4×3=12 ✔, 4+3=7 ✔</p><div class="highlight-box">Both <strong>34 and 43</strong> satisfy all conditions.</div>`}
+];
+
+/* ═══ UNLOCK STATE ═══ */
+let isUnlocked = false;
+
+/* ═══ QUIZ STATE (declared early so saveProgress never crashes) ═══ */
+let quizList = [];
+let currentQIdx = 0;
+let timerInterval = null;
+let timerTotal = 0;
+let timerRemaining = 0;
+let answered = false;
+let totalCorrect = 0, totalWrong = 0, totalAnswered = 0;
+let answeredMap = new Map();
+
+/* ═══ AUDIO ═══ */
+let actx=null;
+function getAC(){
+  if(!actx) actx=new(window.AudioContext||window.webkitAudioContext)();
+  if(actx.state==='suspended') actx.resume();
+  return actx;
+}
+function tone(f,d,t='sine',v=0.12){
+  try{const c=getAC(),g=c.createGain(),o=c.createOscillator();
+    o.type=t;o.frequency.value=f;
+    g.gain.setValueAtTime(v,c.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001,c.currentTime+d);
+    o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+d);
+  }catch(e){}
+}
+function sndCorrect(){tone(523,.1,'sine',.09);setTimeout(()=>tone(659,.1,'sine',.1),110);setTimeout(()=>tone(784,.22,'sine',.11),220);}
+function sndWrong(){tone(220,.14,'sawtooth',.07);setTimeout(()=>tone(170,.28,'sawtooth',.05),160);}
+function sndClick(){tone(600,.045,'sine',.05);}
+function sndWarn(){tone(440,.07,'square',.04);}
+function sndNext(){tone(440,.07,'sine',.07);setTimeout(()=>tone(550,.1,'sine',.09),80);}
+function sndUnlock(){[523,659,784,1047].forEach((f,i)=>setTimeout(()=>tone(f,.14,'sine',.11),i*110));}
+
+/* ═══ SPEECH — IMMEDIATE MALE VOICE ═══ */
+// Pre-load voices immediately on page load
+let voicesReady = false;
+let maleVoice = null;
+function loadVoices(){
+  if(!window.speechSynthesis) return;
+  const vv = window.speechSynthesis.getVoices();
+  if(!vv || vv.length===0) return;
+  voicesReady = true;
+  // Pick best male en voice — works on iOS Safari, Chrome, Firefox
+  maleVoice = vv.find(v=>/david|mark|daniel|fred|luca|jorge|enhanced/i.test(v.name)&&v.lang.startsWith('en'))
+            || vv.find(v=>v.lang==='en-US'&&!/(female|zira|susan|samantha|karen|moira|tessa|fiona|victoria)/i.test(v.name))
+            || vv.find(v=>v.lang.startsWith('en'))
+            || vv[0];
+}
+// Fire immediately + on voices changed (Chrome/Android)
+if(window.speechSynthesis){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+// speakNow kept for any legacy calls
+function speakNow(text){
+  try{
+    if(!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.pitch=0.78; u.rate=0.90; u.volume=1;
+    if(!voicesReady) loadVoices();
+    if(maleVoice) u.voice = maleVoice;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* ═══ LOCK ═══ */
+const ACCESS_CODE='TGED09GOCON';
+const SYMS=['∑','π','∫','√','∞','Δ','θ','±','≈','μ','σ','∂','λ','≠','∈','φ','ω','α','β','γ'];
+(function(){
+  const c=document.getElementById('lock-floats');
+  for(let i=0;i<24;i++){
+    const d=document.createElement('div');d.className='lock-symbol';
+    d.textContent=SYMS[i%SYMS.length];
+    d.style.cssText=`left:${Math.random()*94}%;font-size:${Math.random()*52+18}px;animation-duration:${Math.random()*11+8}s;animation-delay:${Math.random()*9}s;`;
+    c.appendChild(d);
+  }
+})();
+
+let pwdVis=false;
+function togglePwd(){
+  pwdVis=!pwdVis;
+  document.getElementById('lock-input').type=pwdVis?'text':'password';
+  document.getElementById('lock-eye-btn').textContent=pwdVis?'🙈':'👁';
+  sndClick();
+}
+function tryCode(){
+  const val=document.getElementById('lock-input').value.trim().toUpperCase();
+  if(val===ACCESS_CODE){
+    sndUnlock();
+    isUnlocked=true;
+    saveProgress({unlocked:true});
+    document.getElementById('lock-screen').classList.add('exit');
+    setTimeout(()=>{
+      document.getElementById('lock-screen').style.display='none';
+      // main-content shown inside dismissActivated
+      document.getElementById('activated-popup').classList.add('show');
+    },700);
+  } else {
+    const err=document.getElementById('lock-err');
+    err.classList.add('show');
+    document.getElementById('lock-input').classList.add('error');
+    sndWrong();
+    setTimeout(()=>{document.getElementById('lock-input').classList.remove('error');err.classList.remove('show');},2200);
+  }
+}
+function dismissActivated(){
+  sndClick();
+  document.getElementById('activated-popup').classList.remove('show');
+
+  // Show the greeting screen immediately
+  const gs = document.getElementById('greeting-screen');
+  gs.style.display = 'flex';
+  buildGreetingStars();
+  buildGreetingSymbols();
+  buildVoiceBars();
+  buildPortalRings();
+
+  // Block scrolling during greeting
+  document.body.style.overflow = 'hidden';
+
+  // ── VOICE — works on iOS Safari via user-gesture chain ──
+  speakGreeting();
+
+  // Show "Enter the World" button after ~3s (after voice starts / ends)
+  setTimeout(showScrollCue, 3000);
+
+  // Safety fallback: show button at 6s no matter what
+  setTimeout(showScrollCue, 6000);
+
+  // Init main content in background (invisible until portal fires)
+  const mc = document.getElementById('main-content');
+  mc.style.display = 'block';
+  mc.style.opacity = '0';
+  mc.style.pointerEvents = 'none';
+  setTimeout(initMain, 300);
+}
+
+function speakGreeting(){
+  // iOS Safari requires speech inside a user-gesture stack
+  // dismissActivated IS called from a tap so this is safe
+  try{
+    if(!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+
+    // Reload voices — iOS needs this called late
+    if(!voicesReady || !maleVoice) loadVoices();
+
+    const text = 'Code Activated! Welcome, Professor Gocon! ' +
+                 'The Word Problem Bank is now unlocked. ' +
+                 'Tap Enter the World to begin.';
+    const u = new SpeechSynthesisUtterance(text);
+    u.pitch  = 0.78;
+    u.rate   = 0.90;
+    u.volume = 1;
+
+    // Best male voice selection
+    const voices = window.speechSynthesis.getVoices();
+    const pick = voices.find(v=>/david|mark|daniel|alex|fred|luca|jorge|enhanced/i.test(v.name)&&v.lang.startsWith('en'))
+              || voices.find(v=>v.lang==='en-US')
+              || voices.find(v=>v.lang.startsWith('en'))
+              || voices[0];
+    if(pick) u.voice = pick;
+
+    u.onend = ()=>{ showScrollCue(); animateVoiceBarsStop(); };
+    u.onerror = ()=>{ showScrollCue(); };
+
+    window.speechSynthesis.speak(u);
+  }catch(e){
+    showScrollCue();
+  }
+}
+
+function showScrollCue(){
+  const cue = document.getElementById('g-scroll-cue');
+  if(cue && !cue.classList.contains('show')) cue.classList.add('show');
+}
+
+function buildGreetingStars(){
+  const c = document.getElementById('g-stars');
+  if(!c || c.children.length > 0) return;
+  for(let i=0;i<55;i++){
+    const s = document.createElement('div');
+    s.className = 'g-star';
+    const sz = Math.random()*2.5+.5;
+    s.style.cssText = `width:${sz}px;height:${sz}px;
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      animation-duration:${2+Math.random()*3}s;
+      animation-delay:${Math.random()*3}s;`;
+    c.appendChild(s);
+  }
+}
+
+function buildGreetingSymbols(){
+  const card = document.getElementById('greeting-screen');
+  const existing = card.querySelectorAll('.g-sym');
+  if(existing.length) return;
+  const syms = ['∑','π','∫','√','∞','Δ','θ','±','∂','λ'];
+  syms.forEach((sym,i)=>{
+    const el = document.createElement('div');
+    el.className = 'g-sym';
+    el.textContent = sym;
+    el.style.cssText = `
+      left:${5+Math.random()*90}%;
+      bottom:${-5+Math.random()*30}%;
+      font-size:${28+Math.random()*42}px;
+      animation-duration:${6+Math.random()*8}s;
+      animation-delay:${Math.random()*4}s;`;
+    card.appendChild(el);
+  });
+}
+
+function buildVoiceBars(){
+  const container = document.getElementById('g-voice');
+  if(!container) return;
+  container.innerHTML = '';
+  const heights = [8,14,22,18,28,24,18,28,22,14,18,24,8,18,28,18,8];
+  heights.forEach((h,i)=>{
+    const bar = document.createElement('div');
+    bar.className = 'g-bar';
+    bar.style.cssText = `height:${h}px;--h:${h}px;
+      animation-duration:${0.3+Math.random()*0.4}s;
+      animation-delay:${i*0.05}s;`;
+    container.appendChild(bar);
+  });
+}
+
+function animateVoiceBarsStop(){
+  const bars = document.querySelectorAll('.g-bar');
+  bars.forEach(b=>{ b.style.animationPlayState='paused'; b.style.height='3px'; });
+}
+
+function buildPortalRings(){
+  const tunnel = document.getElementById('portal-tunnel');
+  if(!tunnel || tunnel.children.length) return;
+  // Create 12 rings at different depths — pure CSS, no filter/blur
+  const ringCount = 12;
+  for(let i=0;i<ringCount;i++){
+    const ring = document.createElement('div');
+    ring.className = 'portal-ring';
+    const depth = -800 + (i/ringCount)*800; // z from -800 to 0
+    const size = 60 + (i/ringCount)*Math.min(window.innerWidth,window.innerHeight)*2.5;
+    const hue = 220 + i*12; // blue→purple→teal range
+    const alpha = 0.15 + (i/ringCount)*0.5;
+    ring.style.cssText = `
+      width:${size}px;height:${size}px;
+      --z:${depth}px;
+      border:${2+i*0.3}px solid hsla(${hue},80%,65%,${alpha});
+      box-shadow:0 0 ${8+i*4}px hsla(${hue},80%,65%,${alpha*0.5});
+      opacity:0;
+      animation-delay:${i*0.05}s;`;
+    tunnel.appendChild(ring);
+  }
+}
+
+function triggerPortal(){
+  sndClick();
+  // Hide greeting
+  const gs = document.getElementById('greeting-screen');
+  gs.style.transition = 'opacity .3s';
+  gs.style.opacity = '0';
+  setTimeout(()=>{ gs.style.display='none'; gs.style.opacity=''; }, 300);
+
+  // Show portal scene
+  const portal = document.getElementById('portal-scene');
+  portal.style.display = 'flex';
+
+  // Make all rings visible immediately for the fly-through
+  document.querySelectorAll('.portal-ring').forEach((r,i)=>{
+    r.style.opacity = '1';
+  });
+
+  // After portal animation (1.8s), reveal main content
+  setTimeout(()=>{
+    portal.style.display = 'none';
+
+    const mc = document.getElementById('main-content');
+    mc.style.opacity = '';
+    mc.style.pointerEvents = '';
+    mc.classList.add('world-reveal');
+    mc.scrollIntoView({behavior:'instant',block:'start'});
+
+    // Shimmer
+    const sh = document.getElementById('world-shimmer');
+    if(sh){ sh.classList.add('active'); setTimeout(()=>sh.classList.remove('active'),1000); }
+
+    // Unblock scrolling
+    document.body.style.overflow = '';
+
+    // Scroll hint
+    const hint = document.getElementById('scroll-hint');
+    if(hint){ hint.style.display='flex'; setTimeout(()=>{ hint.style.display='none'; },3500); }
+
+  }, 1800);
+}
+
+
+
+/* ═══ ANSWER KEY LOCK ═══ */
+function tryOpenAnswerKey(){
+  sndClick();
+  if(isUnlocked){
+    openPdfModal();
+  } else {
+    showToastMsg('🔒','Access restricted. This feature requires the unlock code.','wrong');
+  }
+}
+
+/* ═══ PROGRESS PERSISTENCE (localStorage + visibilitychange) ═══ */
+const STORE_KEY='wpb_progress_v2';
+function saveProgress(extra={}){
+  try{
+    const data={
+      currentQIdx: (typeof currentQIdx!=='undefined'?currentQIdx:0),
+      totalCorrect: (typeof totalCorrect!=='undefined'?totalCorrect:0),
+      totalWrong:   (typeof totalWrong!=='undefined'?totalWrong:0),
+      totalAnswered:(typeof totalAnswered!=='undefined'?totalAnswered:0),
+      answeredMap:  (typeof answeredMap!=='undefined'?[...answeredMap.entries()]:[]),
+      timestamp:Date.now(),
+      ...extra
+    };
+    localStorage.setItem(STORE_KEY,JSON.stringify(data));
+  }catch(e){}
+}
+/* loadProgress merged into restoreOnRefresh */
+// Save on tab hide/close
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden') saveProgress();
+});
+window.addEventListener('beforeunload',()=>saveProgress());
+
+/* ═══ QUIZ ENGINE ═══ */
+// (vars declared above near top of script)
+
+function initMain(){
+  quizList=[...problems];
+  renderCurrentCard();
+  setupReveal();
+  // guard against duplicate scroll listener
+  window.removeEventListener('scroll',handleScroll);
+  window.addEventListener('scroll',handleScroll);
+  updateScoreDisplay();
+}
+
+function renderCurrentCard(){
+  const p=quizList[currentQIdx];
+  if(!p) return;
+  answered=false;
+  stopTimer();
+  const prev=answeredMap.get(p.id);
+  const wasAnswered=!!prev;
+  const letters=['A','B','C','D'];
+  const diffDots=[...Array(3)].map((_,i)=>`<span class="diff-dot${i<p.diff?' active':''}"></span>`).join('');
+  const diffLabel=['','Easy','Medium','Hard'][p.diff];
+  const catBgMap={algebra:'linear-gradient(135deg,rgba(59,91,219,0.04),rgba(59,91,219,0.01))',geometry:'linear-gradient(135deg,rgba(14,164,122,0.05),rgba(14,164,122,0.01))',probability:'linear-gradient(135deg,rgba(124,58,237,0.05),rgba(124,58,237,0.01))',sequences:'linear-gradient(135deg,rgba(14,164,122,0.04),rgba(14,164,122,0.01))',rates:'linear-gradient(135deg,rgba(232,137,12,0.05),rgba(232,137,12,0.01))',logic:'linear-gradient(135deg,rgba(224,62,106,0.04),rgba(224,62,106,0.01))'};
+  const card=document.getElementById('quiz-card-container');
+  card.style.backgroundImage=catBgMap[p.cat]||'';
+
+  const choicesHTML=p.choices.map((c,i)=>{
+    let cls='choice-btn';
+    if(wasAnswered){
+      if(i===p.correct) cls+=' reveal-correct';
+      else if(i===prev.chosen) cls+=' wrong';
+    }
+    return `<button class="choice-btn${wasAnswered?(i===p.correct?' reveal-correct':i===prev.chosen?' wrong':''):''}" id="ch-${i}" onclick="selectAnswer(${i})" ${wasAnswered?'disabled':''}><span class="choice-letter">${letters[i]}</span>${c}</button>`;
+  }).join('');
+
+  card.innerHTML=`
+    <div class="qcard-bg">${p.bg}</div>
+    <div class="qcard-header">
+      <div class="qcard-meta">
+        <span class="qcard-num">#${String(p.id).padStart(2,'0')} of 30</span>
+        <span class="qcard-cat cat-${p.cat}">${p.cat}</span>
+        <span style="font-size:.6rem;font-weight:600;color:var(--muted);">${diffLabel}</span>
+      </div>
+      <div class="qcard-diff">${diffDots}</div>
+    </div>
+    <div style="padding:.5rem 1.3rem 0;">
+      <div style="display:flex;justify-content:space-between;font-size:.6rem;color:var(--muted);font-weight:600;margin-bottom:.3rem;">
+        <span>Progress</span><span>${currentQIdx+1} / ${quizList.length}</span>
+      </div>
+      <div style="height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;">
+        <div style="height:100%;width:${((currentQIdx+1)/quizList.length)*100}%;background:linear-gradient(to right,var(--blue),var(--teal));border-radius:2px;transition:width .4s ease;"></div>
+      </div>
+    </div>
+    <div class="qcard-body" style="padding:1rem 1.3rem;">
+      <div class="qcard-timer" id="timer-row" style="display:none;">
+        <div class="timer-bar-wrap"><div class="timer-bar" id="timer-bar" style="width:100%;background:var(--teal)"></div></div>
+        <div class="timer-num" id="timer-num">${p.time}s</div>
+      </div>
+      <div class="qcard-q">${p.q}</div>
+      <div class="choices" id="choices-wrap">${choicesHTML}</div>
+      ${wasAnswered?'':`<div id="start-timer-wrap" style="margin-top:.8rem;">
+        <button id="start-timer-btn" onclick="beginAnswering()" style="width:100%;padding:.8rem;background:linear-gradient(135deg,var(--blue),#5b7cff);border:none;border-radius:var(--r-sm);color:#fff;font-size:.88rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .2s;box-shadow:0 4px 14px rgba(59,91,219,0.3);">⏱ Start Timer &amp; Answer</button>
+      </div>`}
+      ${wasAnswered?`<div style="margin-top:.8rem;padding:.9rem 1rem;border-radius:var(--r-sm);background:${prev.correct?'var(--teal-l)':'var(--rose-l)'};border:1.5px solid ${prev.correct?'var(--teal)':'var(--rose)'};color:${prev.correct?'var(--teal)':'var(--rose)'};font-size:.85rem;font-weight:600;line-height:1.6;"><div style="font-size:1.1rem;margin-bottom:.2rem;">${prev.correct?'🎉 Correct!':'💡 Already answered'}</div><div style="font-weight:400;color:var(--ink2);font-size:.8rem;">You ${prev.correct?'got this one right ✓':'missed this one — correct answer is highlighted above'}</div></div>`:''}
+      <div id="result-msg" style="display:none;"></div>
+    </div>
+    <div class="qcard-footer" id="card-footer" style="padding:.8rem 1.3rem 1rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:.6rem;">
+      ${wasAnswered?`<button class="view-sol-btn" style="display:flex;" onclick="openSolution(${p.id})">📖 View Solution</button>`:`<button class="view-sol-btn" id="vsb" onclick="openSolution(${p.id})" style="display:none;">📖 View Solution</button>`}
+      <button id="next-btn" onclick="goNext()" style="display:${wasAnswered?'block':'none'};flex:1;padding:.7rem;background:var(--blue);color:#fff;border:none;border-radius:var(--r-sm);font-size:.82rem;font-weight:700;cursor:pointer;transition:all .18s;">${currentQIdx<quizList.length-1?'Next Question →':'See My Results 🎉'}</button>
+    </div>`;
+
+  if(wasAnswered) answered=true;
+  card.style.opacity='0';card.style.transform='translateX(40px)';
+  requestAnimationFrame(()=>{card.style.transition='opacity .35s ease,transform .35s ease';card.style.opacity='1';card.style.transform='translateX(0)';});
+  updateScoreDisplay();
+  saveProgress();
+}
+
+function beginAnswering(){
+  sndClick();
+  document.getElementById('start-timer-wrap').style.display='none';
+  document.getElementById('timer-row').style.display='flex';
+  startTimer(quizList[currentQIdx].time);
+}
+function startTimer(secs){
+  timerTotal=secs;timerRemaining=secs;
+  const bar=document.getElementById('timer-bar');
+  const num=document.getElementById('timer-num');
+  timerInterval=setInterval(()=>{
+    timerRemaining--;
+    const pct=(timerRemaining/timerTotal)*100;
+    if(bar){bar.style.width=pct+'%';bar.style.background=pct>50?'var(--teal)':pct>20?'var(--amber)':'var(--rose)';}
+    if(num) num.textContent=timerRemaining+'s';
+    if(timerRemaining<=5&&timerRemaining>0) sndWarn();
+    if(timerRemaining<=0){stopTimer();timeUp();}
+  },1000);
+}
+function stopTimer(){clearInterval(timerInterval);timerInterval=null;}
+function timeUp(){
+  if(answered)return;
+  answered=true;
+  const p=quizList[currentQIdx];
+  document.querySelectorAll('.choice-btn').forEach((b,i)=>{b.disabled=true;if(i===p.correct)b.classList.add('reveal-correct');});
+  showResultMsg('⏰',"Time's up!","The correct answer is highlighted above. Don't worry, keep going!",'wrong');
+  totalAnswered++;totalWrong++;
+  answeredMap.set(p.id,{correct:false,chosen:-1});
+  showPostAnswerBtns();updateScoreDisplay();saveProgress();
+}
+function selectAnswer(chosen){
+  if(answered)return;
+  answered=true;stopTimer();sndClick();
+  const p=quizList[currentQIdx];
+  document.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
+  totalAnswered++;
+  const isCorrect=chosen===p.correct;
+  if(isCorrect){
+    totalCorrect++;
+    document.getElementById(`ch-${chosen}`).classList.add('correct');
+    const card=document.getElementById('quiz-card-container');
+    card.style.animation='correctPop .4s ease';setTimeout(()=>card.style.animation='',400);
+    spawnConfetti();sndCorrect();
+    showResultMsg('🎉',"Excellent! That's correct! 🌟","Great thinking! You got it right. Keep up the momentum!",'correct');
+  } else {
+    totalWrong++;
+    document.getElementById(`ch-${chosen}`).classList.add('wrong');
+    document.getElementById(`ch-${p.correct}`).classList.add('reveal-correct');
+    sndWrong();
+    showResultMsg('💡',"Not quite this time!","That's okay — every mistake is a learning moment! 💪 The correct answer is highlighted.",'wrong');
+  }
+  answeredMap.set(p.id,{correct:isCorrect,chosen});
+  showPostAnswerBtns();updateScoreDisplay();saveProgress();
+}
+function showResultMsg(icon,title,sub,type){
+  const el=document.getElementById('result-msg');if(!el)return;
+  const bg=type==='correct'?'var(--teal-l)':'var(--rose-l)';
+  const border=type==='correct'?'var(--teal)':'var(--rose)';
+  const col=type==='correct'?'var(--teal)':'var(--rose)';
+  el.style.cssText=`display:block;margin-top:.8rem;padding:.9rem 1rem;border-radius:var(--r-sm);background:${bg};border:1.5px solid ${border};color:${col};font-size:.85rem;font-weight:600;line-height:1.6;animation:fadeUp .3s ease both;`;
+  el.innerHTML=`<div style="font-size:1.1rem;margin-bottom:.2rem;">${icon} ${title}</div><div style="font-weight:400;color:var(--ink2);font-size:.8rem;">${sub}</div>`;
+}
+function showPostAnswerBtns(){
+  const vsb=document.getElementById('vsb');const nb=document.getElementById('next-btn');
+  if(vsb)vsb.style.display='flex';if(nb)nb.style.display='block';
+}
+function goNext(){
+  sndNext();
+  if(currentQIdx<quizList.length-1){currentQIdx++;renderCurrentCard();document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});}
+  else showFinalResults();
+}
+function showFinalResults(){
+  const pct=Math.round((totalCorrect/quizList.length)*100);
+  let grade,color,emoji;
+  if(pct>=90){grade='Outstanding! 🏆';color='var(--teal)';emoji='🏆';}
+  else if(pct>=75){grade='Great Work! 🌟';color='var(--teal)';emoji='🌟';}
+  else if(pct>=60){grade='Good Effort! 👍';color='var(--amber)';emoji='👍';}
+  else{grade='Keep Practicing! 💪';color='var(--rose)';emoji='💪';}
+  const card=document.getElementById('quiz-card-container');
+  card.style.transition='opacity .3s';card.style.opacity='0';
+  setTimeout(()=>{
+    card.style.backgroundImage='';
+    card.innerHTML=`<div style="padding:3rem 2rem;text-align:center;">
+      <div style="font-size:4rem;margin-bottom:1rem;">${emoji}</div>
+      <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:${color};margin-bottom:.5rem;">${grade}</div>
+      <div style="font-family:'Fraunces',serif;font-size:4rem;font-weight:900;color:${color};line-height:1;">${pct}%</div>
+      <div style="font-size:.85rem;color:var(--muted);margin:.5rem 0 2rem;">${totalCorrect} correct out of ${quizList.length} questions</div>
+      <div style="display:flex;justify-content:center;gap:2rem;margin-bottom:2rem;">
+        <div style="text-align:center;"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--teal);">${totalCorrect}</div><div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">Correct</div></div>
+        <div style="text-align:center;"><div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:var(--rose);">${totalWrong}</div><div style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);">Wrong</div></div>
+      </div>
+      <button onclick="restartQuiz()" style="padding:.85rem 2.5rem;background:var(--blue);color:#fff;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(59,91,219,0.3);margin-right:.8rem;transition:all .2s;">🔄 Restart</button>
+      <button onclick="tryOpenAnswerKey()" style="padding:.85rem 2rem;background:var(--surface);color:var(--blue);border:2px solid var(--blue);border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;">🔑 Answer Key</button>
+    </div>`;
+    card.style.opacity='1';
+    sndCorrect();setTimeout(()=>sndCorrect(),400);
+  },300);
+}
+function restartQuiz(){
+  sndClick();totalCorrect=0;totalWrong=0;totalAnswered=0;currentQIdx=0;answeredMap=new Map();
+  renderCurrentCard();updateScoreDisplay();
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+}
+function updateScoreDisplay(){
+  document.getElementById('sc-correct').textContent=totalCorrect;
+  document.getElementById('sc-wrong').textContent=totalWrong;
+  document.getElementById('sc-total').textContent=totalAnswered;
+  document.getElementById('hero-score').textContent=totalCorrect;
+}
+function openRandom(){sndClick();openSolution(problems[Math.floor(Math.random()*problems.length)].id);}
+
+/* ═══ CONFETTI ═══ */
+function spawnConfetti(){
+  const p=document.getElementById('quiz-card-container');
+  const cols=['#3B5BDB','#0EA47A','#E8890C','#E03E6A','#7C3AED'];
+  for(let i=0;i<10;i++){
+    const c=document.createElement('div');
+    c.style.cssText=`position:absolute;width:8px;height:8px;border-radius:50%;background:${cols[i%5]};left:${35+Math.random()*30}%;top:${30+Math.random()*20}%;pointer-events:none;z-index:20;animation:confettiPop .7s ${Math.random()*.35}s ease forwards;`;
+    p.appendChild(c);setTimeout(()=>c.remove(),1200);
+  }
+}
+
+/* ═══ TOAST ═══ */
+let toastT;
+function showToastMsg(icon,msg,type){
+  clearTimeout(toastT);
+  const t=document.getElementById('toast');
+  t.className='toast-'+(type==='correct'?'correct':'wrong');
+  document.getElementById('toast-icon').textContent=icon;
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  toastT=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+/* ═══ SOLUTION MODAL ═══ */
+let currentSolIdx=0;
+function openSolution(id){
+  sndClick();
+  // Only allow viewing solution for problems that have been answered
+  if(!answeredMap.has(id)){
+    showToastMsg('🔒','Answer this question first before viewing its solution!','wrong');
+    return;
+  }
+  currentSolIdx=problems.findIndex(p=>p.id===id);
+  renderSolution(currentSolIdx);
+  document.getElementById('sol-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function renderSolution(idx){
+  const p=problems[idx];
+  document.getElementById('sol-num').textContent=`Problem ${String(p.id).padStart(2,'0')} · ${p.cat.toUpperCase()} · ${['','Easy','Medium','Hard'][p.diff]}`;
+  document.getElementById('sol-title').textContent=p.title;
+  document.getElementById('sol-problem').textContent=p.q;
+  const steps=[
+    {b:'s1',l:'Step 01 · Understand the Problem',c:p.s1},
+    {b:'s2',l:'Step 02 · Devise a Plan',c:p.s2},
+    {b:'s3',l:'Step 03 · Carry Out the Plan',c:p.s3html},
+    {b:'s4',l:'Step 04 · Review the Solution',c:p.s4},
+  ];
+  let html=steps.map((s,i)=>`
+    <div class="step-accordion" id="sacc-${p.id}-${i}">
+      <div class="step-acc-head" onclick="toggleAcc('sacc-${p.id}-${i}')">
+        <span class="step-acc-badge ${s.b}">${s.l.split('·')[0].trim()}</span>
+        <span class="step-acc-title">${s.l.split('·').slice(1).join('·').trim()}</span>
+        <span class="step-acc-arrow">▼</span>
+      </div>
+      <div class="step-acc-body"><div class="step-acc-content">${s.c}</div></div>
+    </div>`).join('');
+  html+=`<div class="sol-answer-box"><div class="sol-answer-label">✅ Final Answer</div><div class="sol-answer-val">${p.answer}</div></div>`;
+  const prevAnswered = idx>0 && answeredMap.has(problems[idx-1].id);
+  const nextAnswered = idx<problems.length-1 && answeredMap.has(problems[idx+1].id);
+  html+=`<div class="sol-nav"><button class="sol-nav-btn" onclick="navSol(-1)" ${(idx===0||!prevAnswered)?'disabled':''}>← Previous</button><button class="sol-nav-btn" onclick="navSol(1)" ${(idx===problems.length-1||!nextAnswered)?'disabled':''}>Next →</button></div>`;
+  document.getElementById('sol-body').innerHTML=html;
+  document.getElementById('sol-modal').scrollTop=0;
+  setTimeout(()=>toggleAcc(`sacc-${p.id}-0`),200);
+}
+function toggleAcc(id){const el=document.getElementById(id);if(el){el.classList.toggle('open');sndClick();}}
+function navSol(d){
+  const n=currentSolIdx+d;
+  if(n>=0&&n<problems.length){
+    if(!answeredMap.has(problems[n].id)){
+      showToastMsg('🔒','That question has not been answered yet!','wrong');
+      return;
+    }
+    currentSolIdx=n;renderSolution(n);sndNext();
+  }
+}
+function closeSolModal(e){if(e.target===document.getElementById('sol-overlay'))closeSolDirect();}
+function closeSolDirect(){document.getElementById('sol-overlay').classList.remove('open');document.body.style.overflow='';sndClick();}
+
+/* ═══ PDF MODAL ═══ */
+function openPdfModal(){
+  sndClick();
+  const ov=document.getElementById('pdf-overlay');
+  ov.style.opacity='1';ov.style.pointerEvents='all';
+  document.getElementById('pdf-modal').style.transform='translateY(0) scale(1)';
+  document.body.style.overflow='hidden';
+  renderAnswerKey();
+}
+function closePdfModal(e){if(e.target===document.getElementById('pdf-overlay'))closePdfDirect();}
+function closePdfDirect(){
+  document.getElementById('pdf-overlay').style.opacity='0';
+  document.getElementById('pdf-overlay').style.pointerEvents='none';
+  document.getElementById('pdf-modal').style.transform='translateY(24px) scale(.97)';
+  document.body.style.overflow='';sndClick();
+}
+/* Convert step HTML to PDF-friendly vertical format */
+function pdfStep(html){
+  // Convert eq-line spans to block divs for PDF
+  let out = html
+    .replace(/<span class="eq-line">/g,'<div style="font-family:monospace;font-size:.78rem;color:#3B5BDB;background:#EDF2FF;border-left:2px solid rgba(59,91,219,.35);padding:.2rem .6rem;margin:.18rem 0;border-radius:0 3px 3px 0;">')
+    .replace(/<\/span>/g,'</div>')
+    .replace(/<div class="math-block"[^>]*>/g,'<div style="margin:.4rem 0;">')
+    .replace(/<div class="highlight-box">/g,'<div style="background:#E6FBF4;border-left:3px solid #0EA47A;padding:.35rem .7rem;border-radius:0 4px 4px 0;margin:.3rem 0;font-size:.77rem;color:#1A1D2E;">')
+    .replace(/<p[^>]*>/g,'<p style="margin:.3rem 0;line-height:1.6;color:#3D4166;">')
+    .replace(/<strong>/g,'<strong style="font-weight:700;">')
+    .replace(/<ul[^>]*>/g,'<ul style="margin:.3rem 0 .3rem 1rem;line-height:1.7;">')
+    .replace(/<ol[^>]*>/g,'<ol style="margin:.3rem 0 .3rem 1rem;line-height:1.7;">')
+    .replace(/<table class="step-table">/g,'<table style="width:100%;border-collapse:collapse;margin:.4rem 0;font-size:.75rem;">')
+    .replace(/<th>/g,'<th style="background:#EDF2FF;color:#3B5BDB;padding:.35rem .6rem;text-align:left;font-weight:700;border:1px solid #e0e5f0;">')
+    .replace(/<td>/g,'<td style="padding:.3rem .6rem;border:1px solid #e0e5f0;color:#3D4166;">')
+    .replace(/<td colspan="3">/g,'<td colspan="3" style="padding:.3rem .6rem;border:1px solid #e0e5f0;color:#3D4166;">')
+    .replace(/<td colspan="2">/g,'<td colspan="2" style="padding:.3rem .6rem;border:1px solid #e0e5f0;color:#3D4166;">');
+  return out;
+}
+
+function renderAnswerKey(){
+  const catColors={algebra:'#3B5BDB',geometry:'#0EA47A',probability:'#7C3AED',sequences:'#0EA47A',rates:'#E8890C',logic:'#E03E6A'};
+  let html=`<div style="margin-bottom:1.5rem;padding:1rem 1.2rem;background:var(--blue-l);border-radius:var(--r);border:1.5px solid rgba(59,91,219,.2);">
+    <div style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;color:var(--blue);margin-bottom:.2rem;">Word Problem Bank — Complete Solution Guide</div>
+    <div style="font-size:.78rem;color:var(--ink2);">Mathematics in the Modern World · Prof. Raquel Dawn Gocon · Created by: Ricky Dela Torre</div>
+  </div>`;
+  problems.forEach(p=>{
+    const col=catColors[p.cat]||'#3B5BDB';
+    const diff=['','Easy','Medium','Hard'][p.diff];
+    html+=`<div style="margin-bottom:1.4rem;border:1.5px solid #e0e5f0;border-radius:12px;overflow:hidden;page-break-inside:avoid;">
+      <div style="padding:.8rem 1.2rem;background:#f7f8fc;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e0e5f0;">
+        <div style="display:flex;align-items:center;gap:.6rem;">
+          <span style="font-size:.62rem;font-weight:700;color:#8a8fa8;">#${String(p.id).padStart(2,'0')}</span>
+          <span style="font-size:1rem;">${p.bg}</span>
+          <span style="font-size:1rem;font-weight:700;color:#1A1D2E;">${p.title}</span>
+        </div>
+        <div style="display:flex;gap:.4rem;align-items:center;">
+          <span style="font-size:.6rem;font-weight:700;padding:.2em .65em;border-radius:10px;background:${col}22;color:${col};">${p.cat}</span>
+          <span style="font-size:.6rem;color:#8a8fa8;">${diff} · ⏱${p.time}s</span>
+        </div>
+      </div>
+      <div style="padding:1rem 1.2rem;">
+        <div style="font-size:.85rem;color:#3D4166;margin-bottom:.8rem;line-height:1.7;font-weight:500;">${p.q}</div>
+        <div style="margin-bottom:.7rem;">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8fa8;margin-bottom:.35rem;">CHOICES</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.3rem;">
+            ${p.choices.map((c,i)=>`<span style="padding:.25em .8em;border-radius:6px;font-size:.78rem;font-weight:${i===p.correct?700:400};background:${i===p.correct?'#E6FBF4':'#f0f1f7'};color:${i===p.correct?'#0EA47A':'#8a8fa8'};border:1.5px solid ${i===p.correct?'#0EA47A':'transparent'};">${['A','B','C','D'][i]}. ${c}${i===p.correct?' ✅':''}</span>`).join('')}
+          </div>
+        </div>
+        <div style="font-size:.8rem;font-weight:700;color:#0EA47A;background:#E6FBF4;padding:.4rem .9rem;border-radius:6px;display:inline-block;margin-bottom:1rem;">✅ ${p.answer}</div>
+        <div style="border-top:1px solid #e0e5f0;padding-top:.9rem;">
+          <div style="font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8fa8;margin-bottom:.5rem;">POLYA'S SOLUTION</div>
+          <div style="display:grid;gap:.6rem;">
+            <div style="background:#FEE8EF;padding:.7rem .9rem;border-radius:6px;border-left:3px solid #E03E6A;font-size:.78rem;">
+              <strong style="color:#E03E6A;display:block;margin-bottom:.35rem;">Step 1 — Understand the Problem</strong>
+              ${pdfStep(p.s1)}
+            </div>
+            <div style="background:#EDF2FF;padding:.7rem .9rem;border-radius:6px;border-left:3px solid #3B5BDB;font-size:.78rem;">
+              <strong style="color:#3B5BDB;display:block;margin-bottom:.35rem;">Step 2 — Devise a Plan</strong>
+              ${pdfStep(p.s2)}
+            </div>
+            <div style="background:#E6FBF4;padding:.7rem .9rem;border-radius:6px;border-left:3px solid #0EA47A;font-size:.78rem;">
+              <strong style="color:#0EA47A;display:block;margin-bottom:.35rem;">Step 3 — Carry Out the Plan</strong>
+              ${pdfStep(p.s3html)}
+            </div>
+            <div style="background:#FFF5E0;padding:.7rem .9rem;border-radius:6px;border-left:3px solid #E8890C;font-size:.78rem;">
+              <strong style="color:#E8890C;display:block;margin-bottom:.35rem;">Step 4 — Review the Solution</strong>
+              ${pdfStep(p.s4)}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('pdf-content').innerHTML=html;
+}
+function printAnswerKey(){
+  sndClick();
+  const content=document.getElementById('pdf-content').innerHTML;
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Word Problem Bank — Solution Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Fraunces:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:'Plus Jakarta Sans',sans-serif;background:#fff;color:#1A1D2E;padding:2cm 2.5cm;font-size:11px;line-height:1.5;}
+      @media print{body{padding:.8cm;}@page{margin:.8cm;size:A4;}}
+      table{border-collapse:collapse;width:100%;}
+      th,td{border:1px solid #e0e5f0;}
+      strong{font-weight:700;}
+      p{margin:.25rem 0;line-height:1.6;}
+      ul,ol{margin:.25rem 0 .25rem 1rem;}
+    </style>
+    </head><body>${content}
+    <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:9px;color:#aaa;text-align:center;">Word Problem Bank · Mathematics in the Modern World · Prof. Raquel Dawn Gocon · Created by Ricky Dela Torre</div>
+    </body></html>`);
+  win.document.close();setTimeout(()=>win.print(),600);
+}
+
+/* ═══ REPOSITORY MODAL ═══ */
+const REPO_KEY='wpb_repo_files';
+function loadRepoFiles(){
+  try{return JSON.parse(localStorage.getItem(REPO_KEY)||'[]');}catch(e){return[];}
+}
+function saveRepoFiles(files){
+  try{localStorage.setItem(REPO_KEY,JSON.stringify(files));}catch(e){}
+}
+function openRepoModal(){
+  sndClick();
+  const ov=document.getElementById('repo-overlay');
+  ov.style.opacity='1';ov.style.pointerEvents='all';
+  document.getElementById('repo-modal').style.transform='translateY(0) scale(1)';
+  document.body.style.overflow='hidden';
+  renderRepoFiles();
+}
+function closeRepoModal(e){if(e.target===document.getElementById('repo-overlay'))closeRepoDirect();}
+function closeRepoDirect(){
+  document.getElementById('repo-overlay').style.opacity='0';
+  document.getElementById('repo-overlay').style.pointerEvents='none';
+  document.getElementById('repo-modal').style.transform='translateY(24px) scale(.97)';
+  document.body.style.overflow='';sndClick();
+}
+function repoDragOver(e){e.preventDefault();document.getElementById('repo-dropzone').style.borderColor='var(--blue)';document.getElementById('repo-dropzone').style.background='var(--blue-l)';}
+function repoDragLeave(){document.getElementById('repo-dropzone').style.borderColor='var(--border)';document.getElementById('repo-dropzone').style.background='var(--bg)';}
+function repoDrop(e){e.preventDefault();repoDragLeave();repoHandleFiles(e.dataTransfer.files);}
+function repoHandleFiles(fileList){
+  const files=loadRepoFiles();
+  Array.from(fileList).forEach(file=>{
+    const reader=new FileReader();
+    reader.onload=function(ev){
+      files.push({name:file.name,size:file.size,type:file.type,date:new Date().toISOString(),data:ev.target.result});
+      saveRepoFiles(files);renderRepoFiles();
+      showToastMsg('📁',`"${file.name}" uploaded successfully!`,'correct');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+function renderRepoFiles(){
+  const files=loadRepoFiles();
+  const el=document.getElementById('repo-file-list');
+  if(files.length===0){
+    el.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--muted);font-size:.85rem;">No files uploaded yet. Drag & drop or click above to add files.</div>`;
+    return;
+  }
+  const icons={pdf:'📄',doc:'📝',docx:'📝',jpg:'🖼️',jpeg:'🖼️',png:'🖼️',pptx:'📊',xlsx:'📈',txt:'📃'};
+  el.innerHTML=`<div style="font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;">${files.length} File${files.length!==1?'s':''}</div>`+
+  files.map((f,i)=>{
+    const ext=f.name.split('.').pop().toLowerCase();
+    const icon=icons[ext]||'📎';
+    const kb=(f.size/1024).toFixed(1);
+    const date=new Date(f.date).toLocaleDateString();
+    return `<div style="display:flex;align-items:center;gap:.9rem;padding:.9rem 1rem;border:1.5px solid var(--border);border-radius:var(--r-sm);margin-bottom:.5rem;background:var(--bg);transition:box-shadow .18s;" onmouseover="this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.boxShadow='none'">
+      <span style="font-size:1.5rem;flex-shrink:0;">${icon}</span>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:.85rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.name}</div>
+        <div style="font-size:.68rem;color:var(--muted);">${kb} KB · ${date}</div>
+      </div>
+      <a href="${f.data}" download="${f.name}" style="padding:.4rem .85rem;background:var(--blue-l);color:var(--blue);border:1.5px solid rgba(59,91,219,.2);border-radius:6px;font-size:.7rem;font-weight:700;text-decoration:none;transition:all .18s;" onmouseover="this.style.background='var(--blue)';this.style.color='#fff'" onmouseout="this.style.background='var(--blue-l)';this.style.color='var(--blue)'">⬇ Download</a>
+      <button onclick="deleteRepoFile(${i})" style="width:28px;height:28px;border-radius:50%;background:var(--rose-l);border:none;color:var(--rose);cursor:pointer;font-size:.8rem;display:flex;align-items:center;justify-content:center;transition:all .18s;" title="Delete">✕</button>
+    </div>`;
+  }).join('');
+}
+function deleteRepoFile(idx){
+  sndClick();
+  const files=loadRepoFiles();files.splice(idx,1);saveRepoFiles(files);renderRepoFiles();
+}
+function exportRepoBundle(){
+  sndClick();
+  const files = loadRepoFiles();
+  if(!files.length){ showToastMsg('📂','No files to export yet.','wrong'); return; }
+
+  // Embed bundle INTO the HTML file so recipient just opens it
+  try{
+    const htmlSrc = document.documentElement.outerHTML;
+    const bundleJSON = JSON.stringify({version:1, files});
+    // Replace the placeholder comment with the real bundle
+    const newHTML = htmlSrc.replace(
+      /<!-- EMBEDDED_REPO_BUNDLE:.*?-->/s,
+      `<!-- EMBEDDED_REPO_BUNDLE: ${btoa(unescape(encodeURIComponent(bundleJSON)))} -->`
+    );
+    const blob = new Blob(['<!DOCTYPE html>\n'+newHTML], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'word-problem-bank-with-files.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToastMsg('📤',`HTML with ${files.length} file(s) exported! Share that HTML file.`,'correct');
+  }catch(e){
+    showToastMsg('❌','Export failed: '+e.message,'wrong');
+  }
+}
+
+function importRepoBundle(input){
+  // Manual JSON import fallback
+  sndClick();
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      const bundle=JSON.parse(e.target.result);
+      if(!bundle.files||!Array.isArray(bundle.files)) throw new Error('Invalid bundle');
+      const existing=loadRepoFiles();
+      const merged=[...existing];
+      bundle.files.forEach(f=>{
+        if(!merged.find(x=>x.name===f.name&&x.size===f.size)) merged.push(f);
+      });
+      saveRepoFiles(merged); renderRepoFiles();
+      showToastMsg('📥',`Imported ${bundle.files.length} file(s) successfully!`,'correct');
+    }catch(ex){ showToastMsg('❌','Invalid file: '+ex.message,'wrong'); }
+  };
+  reader.readAsText(file);
+  input.value='';
+}
+
+/* Load embedded bundle on page open — runs once */
+function loadEmbeddedBundle(){
+  try{
+    const comment = document.head.innerHTML.match(/<!-- EMBEDDED_REPO_BUNDLE: ([^-]+) -->/);
+    if(!comment || comment[1].trim()==='null') return;
+    const bundleJSON = decodeURIComponent(escape(atob(comment[1].trim())));
+    const bundle = JSON.parse(bundleJSON);
+    if(!bundle.files || !bundle.files.length) return;
+    const existing = loadRepoFiles();
+    if(existing.length === 0){
+      // First open with embedded bundle — auto-import silently
+      saveRepoFiles(bundle.files);
+      setTimeout(()=>showToastMsg('📁',`${bundle.files.length} shared file(s) ready in Repository!`,'correct'), 1200);
+    }
+  }catch(e){}
+}
+
+/* ═══ REFRESH RESTORE — runs after all vars declared ═══ */
+function restoreOnRefresh(){
+  try{
+    const raw = localStorage.getItem('wpb_progress_v2');
+    if(!raw) return false;
+    const d = JSON.parse(raw);
+    if(d.unlocked !== true) return false;
+    // Restore state
+    isUnlocked = true;
+    totalCorrect  = d.totalCorrect  || 0;
+    totalWrong    = d.totalWrong    || 0;
+    totalAnswered = d.totalAnswered || 0;
+    if(d.answeredMap) answeredMap = new Map(d.answeredMap);
+    if(typeof d.currentQIdx==='number') currentQIdx = d.currentQIdx;
+    // Show UI
+    const ls = document.getElementById('lock-screen');
+    if(ls){ ls.style.display='none'; }
+    const mc = document.getElementById('main-content');
+    if(mc){ mc.style.display='block'; }
+    return true;
+  }catch(e){ return false; }
+}
+
+/* ═══ REVEAL + SCROLL ═══ */
+function setupReveal(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08});
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>obs.observe(el));
+}
+function handleScroll(){
+  const hdr=document.getElementById('site-header');
+  if(hdr)hdr.style.boxShadow=window.scrollY>40?'0 4px 20px rgba(60,80,180,0.12)':'0 2px 12px rgba(60,80,180,0.06)';
+}
+
+/* ═══ BOOT ON DOM READY ═══ */
+document.addEventListener('DOMContentLoaded', function(){
+  // Auto-load any embedded repo files
+  loadEmbeddedBundle();
+  // Attempt to restore from previous session
+  const wasRestored = restoreOnRefresh();
+  if(wasRestored){
+    initMain();
+    // Show progress toast after a brief moment
+    if(totalAnswered > 0){
+      setTimeout(()=>showToastMsg('💾','Progress restored! Welcome back 📚','correct'), 800);
+    }
+    // Scroll to quiz if was mid-quiz
+    if(currentQIdx > 0){
+      setTimeout(()=>document.getElementById('quiz')?.scrollIntoView({behavior:'smooth'}), 500);
+    }
+  }
+});
+
+/* ═══ KEYBOARD + RIPPLE ═══ */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&document.getElementById('lock-screen')&&document.getElementById('lock-screen').style.display!=='none')tryCode();
+  if(document.getElementById('sol-overlay').classList.contains('open')){
+    if(e.key==='Escape')closeSolDirect();
+    if(e.key==='ArrowRight')navSol(1);
+    if(e.key==='ArrowLeft')navSol(-1);
+  }
+});
+document.addEventListener('click',e=>{
+  const target=e.target.closest('button,a,.hnav-btn,.h-btn,.choice-btn,.flt-btn');
+  if(!target)return;
+  const r=document.createElement('span');r.className='click-ripple';
+  const rect=target.getBoundingClientRect();
+  const size=Math.max(rect.width,rect.height)*1.5;
+  r.style.cssText=`width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
+  target.style.position='relative';target.style.overflow='hidden';
+  target.appendChild(r);setTimeout(()=>r.remove(),500);
+});
+</script>
+</body>
+</html>
